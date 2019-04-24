@@ -1,15 +1,16 @@
 const express     = require('express'); 
 const router      = express.Router();
 const Products    = require('../models/Products');
-const Users        = require('../models/Users')
+const User       = require('../models/Users')
 
-router.get('/', (req, res)=>{
-    res.render('index.ejs');
+
+
+// Index route
+router.get('/', (req, res) => {
+    res.render('users/index.ejs')
 });
 
 
 
 
-
-
-module.export = router; 
+module.exports = router; 
