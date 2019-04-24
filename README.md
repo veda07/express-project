@@ -28,8 +28,6 @@ An auction based third party selling site with 2 models
               description
               buyer
              
-<<<<<<< HEAD
-=======
              
  Project Flow
  
@@ -58,8 +56,7 @@ An auction based third party selling site with 2 models
   - add a 3rd model for bidding 
   - All items user has purchased/sold?
   - will be able to view which user purchased this item
->>>>>>> cce65beac0b693ec70dac34f63240bcf36ca8957
  
 
 
-![wireframe] (../photos/IMG_0716.JPG)
+![wireframe] (/photos/IMG_0716.JPG)
