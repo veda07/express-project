@@ -17,19 +17,17 @@ router.get('/', (req, res) => {
 });
 
 // New Route
-router.get('/new', (req, res) =>{
+router.get('/new', (req, res) => {
    res.render('products/new.ejs');
 });
 
+
 // Create Route
-
 router.post('/', (req, res) => {
-
     Products.create(req.body, (error, newProduct)=> {
         if (error){
             console.log(error)
         } else {
-
             console.log(newProduct);
             res.redirect('/products');
         }
@@ -37,7 +35,6 @@ router.post('/', (req, res) => {
 });
 
 // Show Route
-
 router.get('/:id', (req, res)=>{
     Products.findById(req.params.id, (err, foundProduct)=>{
         if(err){
@@ -51,7 +48,6 @@ router.get('/:id', (req, res)=>{
 })
 
 // Delete Route
-
 router.delete('/:id', (req, res)=>{
     Products.findByIdAndDelete(req.params.id, (err, deletedProduct)=>{
         if(err){
