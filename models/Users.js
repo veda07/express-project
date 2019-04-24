@@ -1,4 +1,5 @@
 const mongoose = require('mongoose'); 
+const Products = require('./Products')
 
 const userSchema = new mongoose.Schema({
     username: {type: String, required: true, unique: true },
