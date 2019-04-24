@@ -29,6 +29,25 @@ An auction based third party selling site with 2 models
               buyer
              
              
+ Project Flow
+ 
+ Home screen will give you a login/ regisatration page
+ While cycling through different product photots
+ Once logged in re direct to the User show page - this will display the Users "Profile" with users products and purchases
+ 
+ The user will have the option in his profile to "create" and upload a product to sell of his own.
+ 
+ The Product will display in a form its name, price and description.
+ 
+ The user will be able to click a button linked to the product to purchase it.
+ 
+ Who does what
+ 
+ Nick - products controller 
+ Shadi - users controller
+ Veda - login and registration 
+ 
+ 
  BONUS:
  
   - add a 'cart'
