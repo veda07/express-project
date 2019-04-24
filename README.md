@@ -43,9 +43,11 @@ An auction based third party selling site with 2 models
  
  Who does what
  
- Nick - products controller 
- Shadi - users controller
- Veda - login and registration 
+ - Nick: products controller 
+ 
+ - Shhadi: users controller
+ 
+ - Veda: login and registration 
  
  
  BONUS:
