@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body>
+    <H1>Edit Your Product Here</H1>
+    <form action="/products/<%=id%>?_method=PUT" method="POST">
+    URL: <input type="text" name="image" value="<%=product.image%>">
+    Title: <input type="text" name="title" value="<%=product.title%>">
+    Description: <input type="text" name="description" value="<%=product.description%>">
+    <button type='submit'>Submit</button>
+    </form>
+</body>
+</html> 
