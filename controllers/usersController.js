@@ -2,6 +2,7 @@ const express     = require('express');
 const router      = express.Router();
 const Products    = require('../models/Products');
 const User       = require('../models/Users');
+const bcrypt = require('bcryptjs');
 
 
 
@@ -31,9 +32,23 @@ router.get('/new', (req, res) => {
 
 //CREATE
 router.post('/', async (req, res)=>{
+
     try{
-        const createdUser = await User.create(req.body)
-        //console.log(createdUser)
+        const password = req.body.password;
+        const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+        const userDbEntry = {};
+        userDbEntry.username = req.body.username;
+        userDbEntry.password = passwordHash; 
+        userDbEntry.email = req.body.email;
+        userDbEntry.address = req.body.address;
+        userDbEntry.name = req.body.name;
+        userDbEntry.products = [];       
+        const createdUser = await User.create(userDbEntry);
+        console.log(createdUser);
+        console.log(passwordHash);
+        console.log(userDbEntry);
+        // req.session.username = users.username;
+        // req.session.logged   = true;
         res.redirect('/users')
 
     } catch (err){
@@ -41,6 +56,36 @@ router.post('/', async (req, res)=>{
         res.send(err)
    }
 })
+//     router.post('/login', async (req, res) => {
+//         const password = req.body.password;
+//         const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+//         const userDbEntry = {};
+//         userDbEntry.username = req.body.username;
+//         userDbEntry.password = passwordHash;
+//   try {
+//     const createdUser = await User.create(userDbEntry);
+
+//     // after you create the user, this is a great time to initialize you session object
+//     // add properties to the session object
+//     req.session.logged = true;
+//     req.session.usersDbId = createdUser._id;
+
+//     res.redirect('/products');
+
+//   } catch(err){
+//     res.send(err)
+//   }
+
+
+
+// });
+
+    // password: {type: String, required: true, unique: true},
+    // products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Products'}]
+
+
+
+
 
 //SHOW
 router.get('/:id', async (req, res) => {
