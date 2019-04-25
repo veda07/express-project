@@ -7,25 +7,35 @@ router.get('/login', (req, res) =>{
     res.render('login.ejs');
 })
 
+
 router.post('/login', async (req, res) =>{
-    
-    const foundUser = await User.find({userName: req.body.userName});
+
+    const foundUser = await User.findOne({username: req.body.username});
+        console.log('/////////////////////////////////');
         console.log(foundUser);
-    // if(foundUser.userName === req.body.userName){
-    //     if(foundUser.password === req.body.password){
-    //         req.session.userName = req.body.userName;
-    //         req.session.logged = true
-            res.redirect('/products')
-    //     } else {
-    //         res.redirect('/auth/login')
-    //     }
-    // } else { // if no users are found
-    //     // res.redirect('/users/new')
-    // }
+        console.log('/////////////FOUND USERs////////////////////');
+        console.log(req.session)
+        console.log('/////////////FOUND session////////////////////');
+        console.log(req.body.username)
+        console.log('/////////////FOUND req.body.username////////////////////');
+ 
+     if(req.body.password === foundUser.password){
+        console.log(req.session)
+        console.log('/////////////FOUND NEWsession////////////////////');
+ 
+            req.session.username = req.body.username;
+            req.session.logged = true
+            res.redirect('/users')
+         } else {
+             res.redirect('/auth/login')
+         }
+ });
+  
 
-    // res.redirect('/products');
 
-});
+
+
+
 
 router.get('logout', (req, res)=>{
     if(err){
