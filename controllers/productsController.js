@@ -23,6 +23,15 @@ router.get('/new', (req, res) =>{
 
 // Create Route
 
+<<<<<<< HEAD
+=======
+// Show Route 
+
+
+
+
+//Create Route
+>>>>>>> express
 router.post('/', (req, res) => {
 
     Products.create(req.body, (error, newProduct)=> {
