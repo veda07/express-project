@@ -30,8 +30,30 @@ router.post('/login', async (req, res) =>{
              res.redirect('/auth/login')
          }
  });
-  
 
+  
+router.post('/login', async (req, res)=>{
+    try{
+        const foundUser = await User.findOne({'username':req.body.username});
+            if(foundUser){
+                console.log(foundUser);
+                if(bcrypt.compareSync(req.body.password, foundUser.password) === true){
+                    req.session.logged = true;
+                    req.session.usersDbId = foundUser._id;
+                    console.log(req.session, ' successful in login');
+                    res.redirect('/users');
+                } else {
+                    req.session.message = "Username or password is incorrect";
+                    res.redirect('/auth/login');
+                }
+            } else {
+                req.session.message = 'Username or password is incorrect';
+                res.redirect('/auth/login');
+            }
+    } catch(err){
+        res.send(err);
+    }
+})
 
 
 
