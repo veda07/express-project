@@ -7,15 +7,19 @@
     <title>Document</title>
 </head>
 <body>
+<nav>
+<a href='/users/new'> Make new user</a>
+<a href='/products/new'> Make new product</a>
+  </nav>
     <h1>User Index Page</h1>
 <ul>
    <% for(let i =0; i< users.length;i++){ %>
         <li>
             <a href="/users/<%=users[i]._id%>"><%=users[i].username%></a>
-
         </li>
     <% } %>
 <ul>
-    
+
+
 </body>
 </html>

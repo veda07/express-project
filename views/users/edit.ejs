@@ -9,7 +9,7 @@
 <body>
 <h1> Edit Account </h1>
 
-    <form action="/users" method="POST">
+    <form action="/users/<%=user._id%>?_method=PUT" method="POST">
     <h4> Personal Information <h4>
         Full Name: <input type="text" name="name" value="<%=user.name%> "><br>
         Email:<input type="text" name="email" value="<%=user.email%>" ><br>
