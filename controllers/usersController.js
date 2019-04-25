@@ -1,7 +1,7 @@
 const express     = require('express'); 
 const router      = express.Router();
 const Products    = require('../models/Products');
-const User       = require('../models/Users')
+const User       = require('../models/Users');
 
 
 
@@ -33,15 +33,11 @@ router.get('/new', (req, res) => {
 router.post('/', async (req, res)=>{
     try{
         const createdUser = await User.create(req.body)
-        console.log("////////////USER/////////////////")
-        console.log(createdUser)
-        console.log("////////////USER/////////////////")
+        //console.log(createdUser)
         res.redirect('/users')
 
     } catch (err){
-        console.log('//////ERR////////')
         console.log(err)
-        console.log('/////ERR/////////')
         res.send(err)
    }
 })
@@ -50,9 +46,7 @@ router.post('/', async (req, res)=>{
 router.get('/:id', async (req, res) => {
     try{
     const foundUser = await User.findById(req.params.id)
-    console.log('/////FOUND USER/////////')
-    console.log(foundUser)
-    console.log('/////FOUND USER/////////')
+    //console.log(foundUser)
     res.render('users/show.ejs', {
         user: foundUser
     })
@@ -64,8 +58,45 @@ router.get('/:id', async (req, res) => {
 })
 
 
+//EDIT
+router.get('/:id/edit',async (req, res)=>{
+    try {
+    const foundUser = await User.findById(req.params.id)
+    res.render('users/edit.ejs', {
+            user: foundUser
+        })
+    } catch (err){
+        console.log(err)
+        res.send(err)
+    }
+})
 
 
+//UPDATE
+router.put('/:id',async (req, res)=>{
+    try{
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body)
+        res.redirect('/users');
+    } catch(err){
+        console.log(err)
+        res.send(err)
+    }
+
+})
+
+
+//DELETE USER
+router.delete('/:id',async (req, res)=>{
+try {
+const foundUser = await  User.findByIdAndDelete(req.params.id);
+const deletedUser = await User.deleteOne(foundUser);
+res.redirect('/users')
+
+    } catch(err){
+        console.log(err)
+        res.send(err)
+    }
+});
 
 
 
