@@ -21,8 +21,8 @@ router.get('/new', (req, res) =>{
    res.render('products/new.ejs');
 });
 
-// Create Route
 
+//Create Route
 router.post('/', (req, res) => {
 
     Products.create(req.body, (error, newProduct)=> {
