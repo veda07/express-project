@@ -29,11 +29,22 @@ router.get('/new', (req, res) => {
 })
 
 
-//CREATE
 router.post('/', async (req, res)=>{
+
     try{
-        const createdUser = await User.create(req.body)
-        //console.log(createdUser)
+        const password = req.body.password;
+        const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+        const userDbEntry = {};
+        userDbEntry.username = req.body.username;
+        userDbEntry.password = passwordHash; 
+        userDbEntry.email = req.body.email;
+        userDbEntry.address = req.body.address;
+        userDbEntry.name = req.body.name;
+        userDbEntry.products = [];       
+        const createdUser = await User.create(userDbEntry);
+        // console.log(createdUser);
+        // console.log(passwordHash);
+        // console.log(userDbEntry);
         res.redirect('/users')
 
     } catch (err){
