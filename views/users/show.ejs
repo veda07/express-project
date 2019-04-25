@@ -7,9 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>User Show Page</h1>
+    <h1><%= user.username%>'s' Page</h1>
+Personal Info:<br>
+<%= user.name%><br>
+<%= user.email%><br>
+<%= user.address%><br><br>
 
-    <%= user.username%>
-     <%= user.name%>
+Products:<br> <%= user.products%><br>
+
+
+<a href="/users/<%=user._id%>/edit">Edit User</a>
+
+<form action='/users/<%= user._id%>?_method=DELETE' method='POST'>
+<button>Delete User</button>
+</form>
+
+
 </body>
 </html>
