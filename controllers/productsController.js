@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Products = require('../models/Products');
+const User = require('../models/Users');
 
 
 // Index route
@@ -16,15 +17,26 @@ router.get('/', (req, res) => {
     })
 });
 
+
 // New Route
-router.get('/new', (req, res) =>{
-   res.render('products/new.ejs');
+router.get('/new', (req, res) => {
+    User.findById(req.session.usersDbId, (err, foundUser)=>{
+
+    if(err){
+      res.send(err);
+    } else {
+      res.render('products/new.ejs', {
+        user: foundUser
+      });
+}
+});
 });
 
 
 //Create Route
-router.post('/', (req, res) => {
+router.post('/',  (req, res) => {
 
+        console.log(req.session)
     Products.create(req.body, (error, newProduct)=> {
         if (error){
             console.log(error)
@@ -36,22 +48,29 @@ router.post('/', (req, res) => {
     })
 });
 
-// Show Route
 
+// Show Route
 router.get('/:id', (req, res)=>{
+    console.log(req.session.usersDbId)
+
+console.log('//////////////////////////////')
+    User.findById(req.session.usersDbId, (err, foundUser)=>{
+
     Products.findById(req.params.id, (err, foundProduct)=>{
         if(err){
             console.log(err)
         } else {
             res.render('products/show.ejs', {
-                product: foundProduct
+                product: foundProduct,
+                user: foundUser
+
             })
         }
+    })    
     })
 })
 
 // Delete Route
-
 router.delete('/:id', (req, res)=>{
     Products.findByIdAndDelete(req.params.id, (err, deletedProduct)=>{
         if(err){
