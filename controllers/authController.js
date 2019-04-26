@@ -32,7 +32,7 @@ router.post('/login', async (req, res) =>{
  });
 
   
-router.post('/login', async (req, res)=>{
+ router.post('/login', async (req, res)=>{
     try{
         const foundUser = await User.findOne({'username':req.body.username});
             if(foundUser){

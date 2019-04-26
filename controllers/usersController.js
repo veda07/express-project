@@ -2,6 +2,8 @@ const express     = require('express');
 const router      = express.Router();
 const Products    = require('../models/Products');
 const User       = require('../models/Users')
+const bcrypt = require('bcryptjs');
+
 
 
 
@@ -29,6 +31,7 @@ router.get('/new', (req, res) => {
 })
 
 
+//CREATE
 router.post('/', async (req, res)=>{
 
     try{
@@ -36,22 +39,22 @@ router.post('/', async (req, res)=>{
         const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
         const userDbEntry = {};
         userDbEntry.username = req.body.username;
-        userDbEntry.password = passwordHash; 
+        userDbEntry.password = passwordHash;
         userDbEntry.email = req.body.email;
         userDbEntry.address = req.body.address;
         userDbEntry.name = req.body.name;
-        userDbEntry.products = [];       
+        userDbEntry.products = [];
         const createdUser = await User.create(userDbEntry);
-        // console.log(createdUser);
-        // console.log(passwordHash);
-        // console.log(userDbEntry);
+        console.log(createdUser);
+        console.log(passwordHash);
+        console.log(userDbEntry);
         res.redirect('/users')
-
+ 
     } catch (err){
         console.log(err)
         res.send(err)
    }
-})
+ })
 
 //SHOW
 router.get('/:id', async (req, res) => {
