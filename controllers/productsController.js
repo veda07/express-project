@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
     })
 });
 
+
 // New Route
 router.get('/new', (req, res) => {
     User.findById(req.session.usersDbId, (err, foundUser)=>{
@@ -31,8 +32,11 @@ router.get('/new', (req, res) => {
 });
 });
 
-// Create Route
-router.post('/', (req, res) => {
+
+
+//Create Route
+router.post('/',  (req, res) => {
+
     Products.create(req.body, (error, newProduct)=> {
         if (error){
             console.log(error)
@@ -43,8 +47,12 @@ router.post('/', (req, res) => {
     })
 });
 
+
 // Show Route
 router.get('/:id', (req, res)=>{
+    console.log(req.session.usersDbId)
+
+
     User.findById(req.session.usersDbId, (err, foundUser)=>{
 
     Products.findById(req.params.id, (err, foundProduct)=>{

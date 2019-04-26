@@ -24,13 +24,11 @@ console.log(foundUsers)
 
 
 //NEW
-
 router.get('/new', (req, res) => {
     res.render('users/new.ejs');
 })
 
 
-//CREATE
 router.post('/', async (req, res)=>{
 
     try{
@@ -47,6 +45,7 @@ router.post('/', async (req, res)=>{
         console.log(createdUser);
         console.log(passwordHash);
         console.log(userDbEntry);
+
         res.redirect('/users')
 
     } catch (err){
