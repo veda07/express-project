@@ -35,17 +35,51 @@ router.get('/new', (req, res) => {
 
 
 //Create Route
-router.post('/',  (req, res) => {
+// router.post('/',  (req, res) => {
 
-    Products.create(req.body, (error, newProduct)=> {
-        if (error){
-            console.log(error)
+//     Products.create(req.body, (error, newProduct)=> {
+//         if (error){
+//             console.log(error)
+//         } else {
+//             console.log(newProduct);
+//             res.redirect('/products');
+//         }
+//     })
+// });
+//Create Route
+// router.post('/', async (req, res) => {
+//    try {
+//        const newProduct = await Products.create(req.body)
+//         console.log(newProduct)
+//         console.log('/////////////NEW PRODUCT ^///////////////////')
+
+//        const foundUser = await User findById(req.session.usersDbId)
+//        console.log(foundUser)
+//        console.log('/////////////found USer///////////////////')
+//           res.redirect('/products');
+
+
+//    }catch (err) {
+//        res.send(err)
+//    }
+// });
+router.post('/', (req, res)=>{
+    Products.create(req.body, (err, newProduct)=>{
+        User.findOne({'products': req.session.usersDbId}, (err, foundUser)=>{
+        })
+        if(err){
+            console.log(err);
         } else {
+            foundUser.products.push(req.params.id);
             console.log(newProduct);
-            res.redirect('/products');
+            foundUser.save((err, foundUser)=>{
+                console.log(foundUser, ' created new product');
+                res.redirect('/products');
+            })
         }
     })
-});
+})
+
 
 
 // Show Route
@@ -72,14 +106,49 @@ router.get('/:id', (req, res)=>{
 // Delete Route
 router.delete('/:id', (req, res)=>{
     Products.findByIdAndDelete(req.params.id, (err, deletedProduct)=>{
-        if(err){
-            console.log(err);
-        } else {
-            console.log(deletedProduct);
-            res.redirect('/products');
-        }
-    })
-})
+        User.findOne({'products': req.params.id}, (err, foundUser)=>{
+
+
+            if(err){
+                console.log(err);
+            } else {
+                foundUser.products.remove(req.params.id);
+                console.log(deletedProduct);
+                foundUser.save((err, updatedUser) =>{
+                    console.log(updatedUser, ' after mutation');
+                    res.redirect('/products');
+
+                })
+            };
+        });        
+    });
+});
+
+
+// router.delete('/:id', (req, res)=>{
+//   Article.findByIdAndRemove(req.params.id, (err, deletedArticle)=>{
+
+//     // find the author and then remove the articles id from their articles array of ids
+//     Author.findOne({'articles': req.params.id}, (err, foundAuthor) => {
+//       if(err){
+//         res.send(err);
+//       } else {
+//         console.log(foundAuthor, "<---- foundAuthor in delete before I remove the article id")
+//         foundAuthor.articles.remove(req.params.id);
+//         // since we just mutated our document ^ , now we have to save
+//         foundAuthor.save((err, updatedAuthor) => {
+//           console.log(updatedAuthor, ' after the mutation');
+//           res.redirect('/articles');
+//         });
+//       }
+//     });
+//   });
+// });
+
+
+
+
+
 
 // // Update Route
 router.put('/:id', (req, res) => {
