@@ -18,7 +18,7 @@ router.get('/login', (req, res) =>{
 					req.session.logged = true;
 					req.session.usersDbId = foundUser._id;
 					console.log(req.session, ' successful in login');
-					res.redirect('/users');
+					res.redirect('/users/' + foundUser._id);
 				} else {
 					req.session.message = "Username or password is incorrect";
 					res.redirect('/auth/login');

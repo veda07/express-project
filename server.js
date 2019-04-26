@@ -15,7 +15,7 @@
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(methodOverride('_method'));
   app.use(morgan('short'));
-  app.use(express.static('static'));
+  app.use(express.static('public'));
   app.use(session({
     secret: 'This is a random secret string that you would make up to protect your session',
     resave: false, 

@@ -28,7 +28,7 @@ router.get('/new', (req, res) => {
     res.render('users/new.ejs');
 })
 
-
+//CREATE
 router.post('/', async (req, res)=>{
 
     try{
@@ -42,11 +42,11 @@ router.post('/', async (req, res)=>{
         userDbEntry.name = req.body.name;
         userDbEntry.products = [];       
         const createdUser = await User.create(userDbEntry);
-        console.log(createdUser);
-        console.log(passwordHash);
-        console.log(userDbEntry);
 
-        res.redirect('/users')
+        // console.log(createdUser);
+        // console.log(passwordHash);
+        // console.log(userDbEntry);
+        res.redirect('/auth/login')
 
     } catch (err){
         console.log(err)
@@ -59,6 +59,8 @@ router.post('/', async (req, res)=>{
 router.get('/:id', async (req, res) => {
     try{
     const foundUser = await User.findById(req.params.id)
+    .populate('products')
+    .exec()
     //console.log(foundUser)
     res.render('users/show.ejs', {
         user: foundUser
