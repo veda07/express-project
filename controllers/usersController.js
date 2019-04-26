@@ -1,9 +1,8 @@
 const express     = require('express'); 
 const router      = express.Router();
 const Products    = require('../models/Products');
-const User       = require('../models/Users')
-const bcrypt = require('bcryptjs');
-
+const User       = require('../models/Users');
+const bcrypt      = require('bcryptjs');
 
 
 
@@ -25,7 +24,6 @@ console.log(foundUsers)
 
 
 //NEW
-
 router.get('/new', (req, res) => {
     res.render('users/new.ejs');
 })

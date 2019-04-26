@@ -23,7 +23,9 @@
   
  
   
-  
+app.get('/', (req, res)=>{
+    res.render('index.ejs')
+})
   
 app.use('/products', productsController);
 app.use('/users', usersController);
