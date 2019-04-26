@@ -19,33 +19,41 @@ router.get('/', (req, res) => {
 
 
 // New Route
-router.get('/new', (req, res) => {
-    User.findById(req.session.usersDbId, (err, foundUser)=>{
-
-    if(err){
-      res.send(err);
-    } else {
-      res.render('products/new.ejs', {
-        user: foundUser
-      });
-}
-});
+router.get('/new', async (req, res) => {
+        try {
+           //const foundUser =  await User.findById(req.session.usersDbId)
+            res.render('products/new.ejs', {
+                //user: foundUser
+            });
+        } catch (err){
+            res.send(err)
+        }
 });
 
 
 //Create Route
-router.post('/',  (req, res) => {
+router.post('/', async (req, res) => {
+    try {
+        const newProduct = await Products.create(req.body)
+         console.log(newProduct)
+         console.log('/////////////NEW PRODUCT ^///////////////////')
+        console.log(req.session.usersDbId)
+        console.log('/////////////req.session^///////////////////')
 
-        console.log(req.session)
-    Products.create(req.body, (error, newProduct)=> {
-        if (error){
-            console.log(error)
-        } else {
+        const foundUser = await User.findById(req.session.usersDbId)
+        foundUser.products.push(newProduct._id);
+        foundUser.save((err, savedUser) => {
+            console.log(savedUser)
+        })
+            // Console/log('////////////////////////////////')
+            // console.log(foundUser)
+            // Console/log('/////////////FOUND USER///////////////////')
+            res.redirect('/users/' + req.session.usersDbId);   
+           
 
-            console.log(newProduct);
-            res.redirect('/products');
-        }
-    })
+    }catch (err) {
+        res.send(err)
+    }
 });
 
 
@@ -71,15 +79,13 @@ console.log('//////////////////////////////')
 })
 
 // Delete Route
-router.delete('/:id', (req, res)=>{
-    Products.findByIdAndDelete(req.params.id, (err, deletedProduct)=>{
-        if(err){
-            console.log(err);
-        } else {
-            console.log(deletedProduct);
-            res.redirect('/products');
-        }
-    })
+router.delete('/:id', async (req, res)=>{
+    try {
+        const deletedProduct = await Products.findByIdAndDelete(req.params.id)
+        res.redirect('/products');
+    } catch (err) {
+        res.send(err)
+    }
 })
 
 // // Update Route
@@ -103,7 +109,6 @@ router.get('/:id/edit', (req, res) =>{
     }
     })
 });
-
 
 
 
