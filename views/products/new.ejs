@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  
+  
 
 </head>
 <body>
+<a href='/products/new'> Make New product</a>
+<a href='/users/<%=user._id%>'> Your Profile</a>
+<a href='/products'> Browse Products</a>
+<a href='/auth/logout'> Logout</a>
   <header></br>
     <h1>Add a New Product Here</h1>
     <form action="/products" method="POST">
-        <p>Title: <input type='text' name='title'></p>
+        <p>*Owner: <input type='text' name='owner' value='<%=user.username%>'></p>
+        <p>*Title: <input type='text' name='title'></p>
         <p>Price: <input type='number' name='price'></p>
         <p>Description: <input type='text' name='description'></p>
         <p>Image URL: <input type='text' name='image'></p>
