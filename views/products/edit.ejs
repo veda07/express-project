@@ -5,15 +5,17 @@
 
 </head>
 <body>
-	<a href='/users/new'> Make new user</a>
-<a href='/products/new'> Make new product</a>
-<a href='/products'> Browse Products for Sale</a>
+
+<a href='/products/new'> Make New product</a>
+
+<a href='/products'> Browse Products</a>
+<a href='/auth/logout'> Logout</a>
     <H1>Edit Your Product Here</H1>
     <form action="/products/<%=id%>?_method=PUT" method="POST">
     URL: <input type="text" name="image" value="<%=product.image%>">
     Title: <input type="text" name="title" value="<%=product.title%>">
     Description: <input type="text" name="description" value="<%=product.description%>">
-     Products: <input type="text" name="description" value="<%=product.description%>">
+     Products: <input type="text" name="products" value="<%=product.description%>">
     <button type='submit'>Submit</button>
     </form>
 </body>

@@ -35,13 +35,15 @@ router.get('/login', (req, res) =>{
 
 
 
-//LOGOUT
-router.get('logout', (req, res)=>{
-    if(err){
-        res.send(err);
-    } else {
-        res.redirect('/')
-    }
+
+router.get('/logout', (req, res) => {
+	req.session.destroy((err) => {
+	  if(err){
+		res.send(err);
+	  } else {
+		res.redirect('/auth/login');
+	  }
+	})
 })
 
 module.exports = router; 
