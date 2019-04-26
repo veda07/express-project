@@ -51,6 +51,7 @@ router.post('/',  (req, res) => {
 
 // Show Route
 router.get('/:id', (req, res)=>{
+
     console.log(req.session.usersDbId)
 
 console.log('//////////////////////////////')
@@ -63,7 +64,6 @@ console.log('//////////////////////////////')
             res.render('products/show.ejs', {
                 product: foundProduct,
                 user: foundUser
-
             })
         }
     })    
