@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+	  <link rel="stylesheet" type="text/css" href="/style.css">
+
+
 </head>
 <body>
 
@@ -18,7 +16,14 @@ Personal Info:<br>
 <%= user.address%><br><br>
 
 Products:<br> <%= user.products%><br>
-
+      <section>
+        <h2>Products for sale by <%= user.username %> </h2>
+        <ul>
+          <% for (let i = 0; i < user.products.length; i++) {%>
+              <li><a href="/articles/<%=user.products[i]._id%>"><%=user.products[i].title%></a></li>
+          <% } %>
+        </ul>
+      </section>
 
 <a href="/users/<%=user._id%>/edit">Edit User</a>
 <a href="/products/new">Create a New Product</a>

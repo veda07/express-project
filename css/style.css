@@ -1,3 +1,15 @@
-.modal-body {
-    
+h1 {
+	color: darkred;
+}
+
+body {
+		background-color: lightgrey;
+		color: darkblue;
+
+}
+
+a {
+	text-decoration: none;
+	margin: 20px;
+	font-size: 24px;
 }
