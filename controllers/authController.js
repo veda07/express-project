@@ -19,7 +19,7 @@ router.get('/login', (req, res) =>{
 					req.session.logged = true;
 					req.session.usersDbId = foundUser._id;
 					console.log(req.session, ' successful in login');
-					res.redirect('/users');
+					res.redirect('/users/' + foundUser._id);
 				} else {
 					req.session.message = "Username or password is incorrect";
 					res.redirect('/auth/login');
@@ -36,13 +36,14 @@ router.get('/login', (req, res) =>{
 
 
 
-//LOGOUT
-router.get('logout', (req, res)=>{
-    if(err){
-        res.send(err);
-    } else {
-        res.redirect('/auth/login')
-    }
+router.get('/logout', (req, res) => {
+	req.session.destroy((err) => {
+	  if(err){
+		res.send(err);
+	  } else {
+		res.redirect('/auth/login');
+	  }
+	})
 })
 
 module.exports = router; 

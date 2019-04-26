@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <title>Document</title>
 </head>
 <body>
+<nav>
+<a href='/products/new'> Make New product</a>
+<a href='/users/<%=user._id%>'> Your Profile</a>
+<a href='/products'> Browse Products</a>
+<a href='/auth/logout'> Logout</a>
+<a href='/users'> ALL USERS</a>
+
+</nav>
+
     <h1><%= user.username%>'s' Page</h1>
 Personal Info:<br>
 <%= user.name%><br>
@@ -16,13 +26,7 @@ Personal Info:<br>
 Products:<br> <%= user.products%><br>
 
 
-<a href="/users/<%=user._id%>/edit">Edit User</a>
-<a href="/products/new">Create a New Product</a>
-
-<form action='/users/<%= user._id%>?_method=DELETE' method='POST'>
-<button>Delete User</button>
-</form>
-
+<a href="/users/<%=user._id%>/edit">Edit Account</a>
 
 </body>
 </html>

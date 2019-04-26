@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-
+  <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
+<a href='/products/new'> Make New product</a>
+<a href='/users/<%=user._id%>'> Your Profile</a>
+<a href='/products'> Browse Products</a>
+<a href='/auth/logout'> Logout</a>
     <h1>Products Index Page</h1>
         <ul>
         <% for(let i = 0; i < products.length; i++){ %>

@@ -8,14 +8,16 @@ const bcrypt      = require('bcryptjs');
 
 // INDEX
 router.get('/', async (req, res) => {
+    if (req.session.logged != true){
+        res.redirect('/')
+    }
     try{ 
 const foundUsers = await User.find({})
-console.log(foundUsers)
+//console.log(foundUsers)
         
         res.render('users/index.ejs', {
             users: foundUsers
         })
-
     } catch (err) {
     res.send(err)
     }
@@ -27,7 +29,6 @@ console.log(foundUsers)
 router.get('/new', (req, res) => {
     res.render('users/new.ejs');
 })
-
 
 //CREATE
 router.post('/', async (req, res)=>{
@@ -42,12 +43,13 @@ router.post('/', async (req, res)=>{
         userDbEntry.address = req.body.address;
         userDbEntry.name = req.body.name;
         userDbEntry.products = [];
+        req.session.logged = true;
         const createdUser = await User.create(userDbEntry);
-        console.log(createdUser);
-        console.log(passwordHash);
-        console.log(userDbEntry);
-        res.redirect('/users')
- 
+        console.log(req.session);
+        // console.log(passwordHash);
+        // console.log(userDbEntry);
+        res.redirect('/users/')
+
     } catch (err){
         console.log(err)
         res.send(err)
@@ -56,8 +58,13 @@ router.post('/', async (req, res)=>{
 
 //SHOW
 router.get('/:id', async (req, res) => {
+    if (req.session.logged != true){
+        res.redirect('/')
+    }
     try{
     const foundUser = await User.findById(req.params.id)
+    .populate('products')
+    .exec()
     //console.log(foundUser)
     res.render('users/show.ejs', {
         user: foundUser
@@ -72,6 +79,9 @@ router.get('/:id', async (req, res) => {
 
 //EDIT
 router.get('/:id/edit',async (req, res)=>{
+    if (req.session.logged != true){
+        res.redirect('/')
+    }
     try {
     const foundUser = await User.findById(req.params.id)
     res.render('users/edit.ejs', {
@@ -86,6 +96,9 @@ router.get('/:id/edit',async (req, res)=>{
 
 //UPDATE
 router.put('/:id',async (req, res)=>{
+    if (req.session.logged != true){
+        res.redirect('/')
+    }
     try{
         const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body)
         res.redirect('/users');
@@ -99,6 +112,9 @@ router.put('/:id',async (req, res)=>{
 
 //DELETE USER
 router.delete('/:id',async (req, res)=>{
+    if (req.session.logged != true){
+        res.redirect('/')
+    }
 try {
 const foundUser = await  User.findByIdAndDelete(req.params.id);
 const deletedUser = await User.deleteOne(foundUser);
