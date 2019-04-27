@@ -2,13 +2,12 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/style.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
 </head>
 <body>
-<a href='/products/new'> Make New product</a>
+<%include ../partials/_navbar.ejs %>
 
-<a href='/products'> Browse Products</a>
-<a href='/auth/logout'> Logout</a>
     <H1>Edit Your Product Here</H1>
     <form action="/products/<%=id%>?_method=PUT" method="POST">
     URL: <input type="text" name="image" value="<%=product.image%>">

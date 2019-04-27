@@ -5,11 +5,14 @@ h1 {
 body {
         background-color: lightgrey;
         color: darkblue;
-
 }
 
 a {
     text-decoration: none;
     margin: 20px;
     font-size: 24px;
+}
+
+.navbar-text {
+    margin-left: 50px;
 }
