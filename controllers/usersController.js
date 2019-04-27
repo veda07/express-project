@@ -8,9 +8,7 @@ const bcrypt      = require('bcryptjs');
 
 // INDEX
 router.get('/', async (req, res) => {
-    if (req.session.logged != true){
-        res.redirect('/')
-    }
+   
     try{ 
 const foundUsers = await User.find({})
 //console.log(foundUsers)
@@ -43,17 +41,20 @@ router.post('/', async (req, res)=>{
         userDbEntry.address = req.body.address;
         userDbEntry.name = req.body.name;
         userDbEntry.products = [];
-        req.session.logged = true;
+        
         const createdUser = await User.create(userDbEntry);
-        console.log(req.session);
-        // console.log(passwordHash);
-        // console.log(userDbEntry);
-        res.redirect('/users/')
+        req.session.usersDbId = createdUser._id;
+        req.session.logged = true;
+        //console.log(req.session, ' successful in login');
+        res.redirect('/users/' + createdUser._id);
+        //console.log(createdUser);
+        //console.log(userDbEntry);
 
     } catch (err){
         console.log(err)
         res.send(err)
    }
+   
  })
 
 //SHOW
