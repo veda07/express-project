@@ -3,6 +3,9 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/style.css">
      <link href='https://fonts.googleapis.com/css?family=Annie Use Your Telescope' rel='stylesheet'>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
 </head>
 <style>
   body {
@@ -14,10 +17,9 @@
   }
 </style>
 <body>
-<a href='/products/new'> Make New product</a>
-<a href='/users/<%=user._id%>'> Your Profile</a>
-<a href='/products'> Browse Products</a>
-<a href='/auth/logout'> Logout</a>
+<%include ../partials/_navbar.ejs %>
+
+
     <h1>Products Index Page</h1>
         <ul class= "productsIndex">
         <% for(let i = 0; i < products.length; i++){ %>

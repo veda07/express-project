@@ -8,9 +8,7 @@ const bcrypt = require('bcryptjs');
 
 // INDEX
 router.get('/', async (req, res) => {
-    if (req.session.logged != true){
-        res.redirect('/')
-    }
+   
     try{ 
 const foundUsers = await User.find({})
 //console.log(foundUsers)
@@ -43,18 +41,21 @@ router.post('/', async (req, res)=>{
         userDbEntry.address = req.body.address;
         userDbEntry.name = req.body.name;
         userDbEntry.products = [];
-        req.session.logged = true;
+        
         const createdUser = await User.create(userDbEntry);
 
-        console.log(req.session);
-        // console.log(passwordHash);
-        // console.log(userDbEntry);
-        res.redirect('/users/')
+        req.session.usersDbId = createdUser._id;
+        req.session.logged = true;
+        //console.log(req.session, ' successful in login');
+        res.redirect('/users/' + createdUser._id);
+        //console.log(createdUser);
+        //console.log(userDbEntry);
 
     } catch (err){
         console.log(err)
         res.send(err)
    }
+   
  })
 
 
@@ -112,23 +113,69 @@ router.put('/:id',async (req, res)=>{
 })
 
 
-//DELETE USER
-router.delete('/:id',async (req, res)=>{
+// DELETE USER
+router.delete('/:id', (req, res) =>{
     if (req.session.logged != true){
         res.redirect('/')
-    }
-try {
-const foundUser = await  User.findByIdAndDelete(req.params.id);
-const deletedUser = await User.deleteOne(foundUser);
-res.redirect('/users')
+    };
+    User.findByIdAndDelete(req.params.id, (err, foundUserToDelete)=>{
+        Products.find(req.params.id, (err, foundProductsToDelete)=>{
+            if(Products.owner === User.id){
+                console.log(foundProductsToDelete);
+            }
+            if(err){
+                console.log(err);
+            } else {
+                res.redirect('/')
+            }
+        })
+    }) 
+    
+})
 
-    } catch(err){
-        console.log(err)
-        res.send(err)
-    }
-});
+// router.delete('/:id',async (req, res)=>{
+//     if (req.session.logged != true){
+//         res.redirect('/')
+//     }
+// try {
+// const foundUser = await  User.findByIdAndDelete(req.params.id);
+// const foundProduct = await Products.findByIdAndDelete({'owner':req.body.username})
+// const deletedUser = await User.deleteOne(foundUser);
+// res.redirect('/users')
+//     } catch(err){
+//         console.log(err)
+//         res.send(err)
+//     }
+// });
 
 
+
+// router.get('/:id', (req, res)=>{
+//     if (req.session.logged != true){
+//         res.redirect('/')
+//     }
+//     console.log(req.session.usersDbEntry)
+//     User.findById(req.session.usersDbId, (err, foundUser)=>{
+//     Products.findById(req.params.id, (err, foundProduct)=>{     
+//         if(err){
+//             console.log(err)
+//         } else {
+//             res.render('products/show.ejs', {
+//                 product: foundProduct,
+//                 user: foundUser
+//             })}})})})
+// // Delete Route
+// router.delete('/:id', async (req, res)=>{
+//     if (req.session.logged != true){
+//         res.redirect('/')
+//     }
+//     try {
+//         const deletedProduct = await Products.findByIdAndDelete(req.params.id)
+//         res.redirect('/products');
+//     } catch (err) {
+//         res.send(err)
+//     }
+// })
 
 
 
