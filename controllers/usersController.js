@@ -114,21 +114,27 @@ router.put('/:id',async (req, res)=>{
 })
 
 
-//DELETE USER
 router.delete('/:id',async (req, res)=>{
     if (req.session.logged != true){
         res.redirect('/')
     }
 try {
-const foundUser = await  User.findByIdAndDelete(req.params.id);
-const deletedUser = await User.deleteOne(foundUser);
-res.redirect('/users')
 
+const deletedUser = await  User.findByIdAndDelete(req.session.usersDbId);
+console.log(deletedUser)
+
+//const foundProducts = await Products.deleteMany({ owner: user.id})
+
+
+
+res.redirect('/users')
     } catch(err){
         console.log(err)
         res.send(err)
     }
 });
+
+// Character.deleteMany({ name: /Stark/, age: { $gte: 18 } }, function (err) {});
 
 
 

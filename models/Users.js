@@ -7,8 +7,8 @@ const userSchema = new mongoose.Schema({
     address: {type: String, required: false, unique: false},
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true, unique: true},
-    products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Products'}]
-
+    products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Products'}],
+    purchasedProducts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Products'}]
 })
 
 const User = mongoose.model('User', userSchema)
