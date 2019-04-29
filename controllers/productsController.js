@@ -142,14 +142,51 @@ router.delete('/:id', async (req, res)=>{
 // }
 
 
-// // Update Route
-router.put('/:id', (req, res) => {
-    Products.findByIdAndUpdate(req.params.id, req.body, (err, foundProduct) => {
-        res.redirect('/products');
-    });
-});
 
- 
+
+ // UPDATE 
+ router.put('/:id', async (req, res) =>{
+    try {
+
+    const findUpdatedProduct = Products.findByIdAndUpdate(req.params.id, req.body, {new: true});
+
+    const findFoundUser = User.findOne({'products': req.params.id });
+
+    const [updatedProduct, foundUser ] = await Promise.all([findUpdatedProduct, findFoundUser])
+
+
+
+        if(foundUser._id != req.session.usersDbId){
+            console.log(req.session)
+            console.log('/////session//////')
+            console.log(foundUser)
+            console.log('===FOUNDUSER=====')
+              foundUser.products.remove(req.params.id);
+
+                await foundUser.save();
+
+                const newUser = await User.findById(req.session.usersDbId);
+                newUser.products.push(updatedProduct);
+
+                const savedNewUser = await newUser.save();
+
+                res.redirect('/products/' + req.params.id);
+
+
+        } else {
+
+            console.log('hitting, else')
+            res.redirect('/products/' + req.params.id);
+   
+                   }
+   
+   
+             } catch (err){
+               console.log(err)
+               res.send(err);
+             }
+
+});
 
 
 
