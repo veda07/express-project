@@ -9,29 +9,33 @@
 
     <title>Document</title>
 </head>
+<style>
+  li {
+    display: inline-block;
+}
+.card-body {
+  background-color: #EEEEFF;
+
+}
+</style>
 <body>
 <%include ../partials/_navbar.ejs %>
 
 
-    <h1><%= user.username%>'s' Page</h1>
-Personal Info:<br>
-<%= user.name%><br>
-<%= user.email%><br>
-<%= user.address%><br><br>
-
-
-
-        <h2><%= user.username %>'s Products </h2>
+        <h1><%= user.username %>'s Products </h1>
     <ol>    
           <% for (let i = 0; i < user.products.length; i++) {%>
 
  <li>
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-  <img src="<%=user.products[i].image%>" class="card-img-top" alt="...">
+  <img src="<%=user.products[i].image%>" class="card-img-top" alt="..." style= "max-height: 18rem">
    <h5 class="card-title"><%=user.products[i].title%></h5>
    <p class="card-text"><%=user.products[i].description%></p>
+
+ 
    <a href="/products/<%=user.products[i]._id%>/edit" class="btn btn-primary">Edit Item</a>
+
   </div>
     </div>
 </li>   
@@ -47,21 +51,6 @@ Personal Info:<br>
  
  
 
-
-
-      <section>
-        <h2>Products for sale by <%= user.username %> </h2>
-        <ul>
-          <% for (let i = 0; i < user.products.length; i++) {%>
-              <li><a href="/products/<%=user.products[i]._id%>"><%=user.products[i].title; %></a><br>
-                <a href="/products/<%=user.products[i]._id%>/edit"><button>Edit</button></a>
-                <form action="/products/<%=user.products[i]._id%>?_method=DELETE" method="POST">
-                    <button>Remove</button>
-                </form>
-
-          <% } %>
-        </ul>
-      </section>
 
 <a href="/users/<%=user._id%>/edit">Edit Account</a>
 

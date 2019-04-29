@@ -13,6 +13,7 @@
     .buttons {
         display: inline-block;
     }
+
 </style>
 <body>
 <%include ../partials/_navbar.ejs %>
@@ -27,7 +28,6 @@
     
   
 
-<img src="<%=product.image%>" class="img-fluid" alt="Responsive image">
 
 
 <div class= 'showProduct'>
@@ -36,6 +36,7 @@
   <img src="<%= product.image %>" class="figure-img img-fluid rounded" alt="...">
      <h5 class="card-title"> <%=product.title%></h5>
   <figcaption class="figure-caption"><%=product.description%></figcaption>
+  <figcaption class="price"><%=product.price%></figcaption>
 </figure>
 
 

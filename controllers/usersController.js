@@ -117,68 +117,22 @@ router.put('/:id',async (req, res)=>{
 
 
 // DELETE USER
-router.delete('/:id', (req, res) =>{
+router.delete('/:id',async (req, res)=>{
     if (req.session.logged != true){
         res.redirect('/')
-    };
-    User.findByIdAndDelete(req.params.id, (err, foundUserToDelete)=>{
-        Products.find(req.params.id, (err, foundProductsToDelete)=>{
-            if(Products.owner === User.id){
-                console.log(foundProductsToDelete);
-            }
-            if(err){
-                console.log(err);
-            } else {
-                res.redirect('/')
-            }
-        })
-    }) 
-    
-})
-
-// router.delete('/:id',async (req, res)=>{
-//     if (req.session.logged != true){
-//         res.redirect('/')
-//     }
-// try {
-// const foundUser = await  User.findByIdAndDelete(req.params.id);
-// const foundProduct = await Products.findByIdAndDelete({'owner':req.body.username})
-// const deletedUser = await User.deleteOne(foundUser);
-// res.redirect('/users')
-//     } catch(err){
-//         console.log(err)
-//         res.send(err)
-//     }
-// });
-
-
-
-// router.get('/:id', (req, res)=>{
-//     if (req.session.logged != true){
-//         res.redirect('/')
-//     }
-//     console.log(req.session.usersDbEntry)
-//     User.findById(req.session.usersDbId, (err, foundUser)=>{
-//     Products.findById(req.params.id, (err, foundProduct)=>{     
-//         if(err){
-//             console.log(err)
-//         } else {
-//             res.render('products/show.ejs', {
-//                 product: foundProduct,
-//                 user: foundUser
-//             })}})})})
-// // Delete Route
-// router.delete('/:id', async (req, res)=>{
-//     if (req.session.logged != true){
-//         res.redirect('/')
-//     }
-//     try {
-//         const deletedProduct = await Products.findByIdAndDelete(req.params.id)
-//         res.redirect('/products');
-//     } catch (err) {
-//         res.send(err)
-//     }
-// })
+    }
+try {
+const foundUser = await  User.findById(req.params.id);
+console.log(foundUser.products);
+const foundProduct = await Products.findById(foundUser.products);
+const deletedProducts = await Products.deleteMany({ owner: { $in: [ foundUser._id]}});
+const deletedUser = await User.deleteOne(foundUser);
+res.redirect('/users')
+    } catch(err){
+        console.log(err)
+        res.send(err)
+    }
+});
 
 
 
