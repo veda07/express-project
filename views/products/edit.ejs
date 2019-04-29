@@ -4,6 +4,11 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
 
 </head>
+<style>
+	body {
+		color: green;
+	}
+</style>
 <body>
 
 <a href='/products/new'> Make New product</a>
@@ -12,10 +17,11 @@
 <a href='/auth/logout'> Logout</a>
     <H1>Edit Your Product Here</H1>
     <form action="/products/<%=id%>?_method=PUT" method="POST">
-    URL: <input type="text" name="image" value="<%=product.image%>">
-    Title: <input type="text" name="title" value="<%=product.title%>">
-    Description: <input type="text" name="description" value="<%=product.description%>">
-     Products: <input type="text" name="products" value="<%=product.description%>">
+<input type="text" name="image" value="<%=product.image%>"> Edit Your Image URL Here<br>
+<input type="text" name="title" value="<%=product.title%>"> Edit Your Product Name Here<br>
+<input type="text" name="description" value="<%=product.description%>"> Edit Your Description Here<br>
+<input type="number" name="price" value="<%=product.price%>"> Edit Your Price Here<br>
+
     <button type='submit'>Submit</button>
     </form>
 </body>

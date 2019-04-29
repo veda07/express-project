@@ -23,12 +23,17 @@ Personal Info:<br>
 <%= user.email%><br>
 <%= user.address%><br><br>
 
-Products:<br> <%= user.products%><br>
+
       <section>
         <h2>Products for sale by <%= user.username %> </h2>
         <ul>
           <% for (let i = 0; i < user.products.length; i++) {%>
-              <li><a href="/articles/<%=user.products[i]._id%>"><%=user.products[i].title%></a></li>
+              <li><a href="/products/<%=user.products[i]._id%>"><%=user.products[i].title; %></a><br>
+                <a href="/products/<%=user.products[i]._id%>/edit"><button>Edit</button></a>
+                <form action="/products/<%=user.products[i]._id%>?_method=DELETE" method="POST">
+                    <button>Remove</button>
+                </form>
+
           <% } %>
         </ul>
       </section>
@@ -37,3 +42,14 @@ Products:<br> <%= user.products%><br>
 
 </body>
 </html>
+
+
+
+
+
+
+                
+
+
+
+

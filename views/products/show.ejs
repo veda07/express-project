@@ -8,6 +8,11 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
     <title>Document</title>
 </head>
+<style>
+    .buttons {
+        display: inline-block;
+    }
+</style>
 <body>
 
 <a href='/products/new'> Make New product</a>
@@ -27,7 +32,13 @@
     <img src="<%= product.image %>">
 
     <a href= '/products'>
-    
+            <br><% if(product.owner === user.username){ %>
+                <a class="buttons" href="/products/<%=user.products._id%>/edit"><button>Edit</button></a>
+                <a class="buttons" href="/products/<%=user.products._id%>?_method=DELETE" method="POST">
+                    <button>Remove</button>
+                </a>
+        <% } %>
+
     
 
 </body>

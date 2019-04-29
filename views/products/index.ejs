@@ -2,22 +2,27 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/style.css">
-
+     <link href='https://fonts.googleapis.com/css?family=Annie Use Your Telescope' rel='stylesheet'>
 </head>
+<style>
+  body {
+    font-family: 'Annie Use Your Telescope';
+  }
+  a { 
+    font-family: 'Annie Use Your Telescope'; font-size: 30px;
+    text-decoration: none;
+  }
+</style>
 <body>
 <a href='/products/new'> Make New product</a>
 <a href='/users/<%=user._id%>'> Your Profile</a>
 <a href='/products'> Browse Products</a>
 <a href='/auth/logout'> Logout</a>
     <h1>Products Index Page</h1>
-        <ul>
+        <ul class= "productsIndex">
         <% for(let i = 0; i < products.length; i++){ %>
             <li>
-                <a href="/products/<%=products[i]._id%>"><%=products[i].title; %></a><br>
-                <a href="/products/<%=products[i]._id%>/edit"><button>Edit</button></a>
-                <form action="/products/<%=products[i]._id%>?_method=DELETE" method="POST">
-                    <button>Remove</button>
-                </form>
+                <a href="/products/<%=products[i]._id%>"><%=products[i].title; %></a>$<%=products[i].price%><br>
             </li>
         <% } %>
         </ul>
