@@ -135,11 +135,7 @@ router.delete('/:id', async (req, res)=>{
     }
 })
 
-// const buyNow = function () {
-//     $('.buyNow').on('click', () => {
-//     console.log('working!')
-// })
-// }
+
 
 
 
@@ -217,7 +213,7 @@ res.render('products/edit.ejs', {
 
 
 
-//buyNow();
+
 
 
 

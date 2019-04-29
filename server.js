@@ -6,8 +6,8 @@
   const session        = require('express-session');
   const morgan         = require('morgan');
   const jquery = require('jquery');
- ;
   require('./db/db')
+ 
 
 
 
