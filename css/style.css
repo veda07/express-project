@@ -25,3 +25,16 @@ a {
 .navbar-text {
     margin-left: 50px;
 }
+
+.login {
+    margin-right: 50%;
+    margin-left: 2%;
+}
+.newProduct {
+    margin-right: 40%;
+    margin-left: 2%;
+}
+.showProduct {
+    margin-left:30%;
+    width: 60%;
+}
