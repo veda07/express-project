@@ -19,16 +19,32 @@
 <%include ../partials/_navbar.ejs %>
 
 
-    <h1>Products Index Page</h1>
+    <h1>Available Items </h1>
         <ul class= "productsIndex">
         <% for(let i = 0; i < products.length; i++){ %>
-            <li>
-                <a href="/products/<%=products[i]._id%>"><%=products[i].title; %></a>$<%=products[i].price%><br>
-            </li>
+         
+
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="<%=products[i].image %>" class="card-img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="/products/<%=products[i]._id%>"><%=products[i].title %></a></h5>
+        <p class="card-text"><%=products[i].description%></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
         <% } %>
         </ul>
-        <form action="/products/new" method="GET">
-            <button>Add a New Product</button>
-        </form>
+      
+
+ <%include ../partials/_footerBar.ejs %>
 </body>
+
 </html> 

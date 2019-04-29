@@ -19,18 +19,39 @@ Personal Info:<br>
 <%= user.email%><br>
 <%= user.address%><br><br>
 
-      <section>
-        <h2>Products for sale by <%= user.username %> </h2>
-        <ul>
+
+        <h2><%= user.username %>'s Products </h2>
+    <ol>    
           <% for (let i = 0; i < user.products.length; i++) {%>
-              <li><a href="/products/<%=user.products[i]._id%>"><%=user.products[i].title%></a></li>
+
+ <li>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+  <img src="<%=user.products[i].image%>" class="card-img-top" alt="...">
+   <h5 class="card-title"><%=user.products[i].title%></h5>
+   <p class="card-text"><%=user.products[i].description%></p>
+   <a href="/products/<%=user.products[i]._id%>/edit" class="btn btn-primary">Edit Item</a>
+  </div>
+    </div>
+</li>   
+
+
           <% } %>
-        </ul>
-      </section>
+
+</ol>
+     
+  
+
+
+ 
+ 
+
+
 
 
 <a href="/users/<%=user._id%>/edit">Edit Account</a>
 
+ <%include ../partials/_footerBar.ejs %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 

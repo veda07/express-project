@@ -11,10 +11,13 @@ router.get('/', async (req, res) => {
    
     try{ 
 const foundUsers = await User.find({})
-//console.log(foundUsers)
+const foundUser = await User.findById(req.session.usersDbId)
+
+console.log(foundUsers)
         
         res.render('users/index.ejs', {
-            users: foundUsers
+            users: foundUsers,
+            user: foundUser
         })
     } catch (err) {
     res.send(err)

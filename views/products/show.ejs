@@ -17,17 +17,38 @@
     <li>Title: <%=product.title%></li>
     <li>Price: <%=product.price%></li>
     <li>Description: <%=product.description%></li>
-    <li>Owner: <%=product.owner%></li>
     </ul>
     
-    <img src="<%= product.image %>">
+  
+
+<img src="<%=product.image%>" class="img-fluid" alt="Responsive image">
+
+
+<div class= 'showProduct'>
+
+    <figure class="figure">
+  <img src="<%= product.image %>" class="figure-img img-fluid rounded" alt="...">
+     <h5 class="card-title"> <%=product.title%></h5>
+  <figcaption class="figure-caption"><%=product.description%></figcaption>
+</figure>
+
 
     <a href= '/products'>
-    
-   
-    <button class='buyNow'>Buy Now</button>
-   
+    <p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+   Get Owners Info
+  </a>
+ 
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+<%=product.owner%>  </div>
+</div>
+</div>
+
+   <%include ../partials/_footerBar.ejs %>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
 </body>
 </html>
+
