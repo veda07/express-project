@@ -85,7 +85,7 @@ router.get('/:id', async (req, res)=>{
             const foundUser = await User.findById(req.session.usersDbId)
            
 
-            const foundProduct = await Products.findById(req.params.id)
+            const foundProduct = await Products.findById(req.params.id)//.populate('owner');
            
        
 
