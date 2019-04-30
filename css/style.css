@@ -41,6 +41,42 @@ a {
     margin-left:300px;
 
 }
+.card-body {
+  background-color: #EEEEFF;
+}
+.muted {
+    color: darkgreen;
+  }
+form{
+        margin-left: 25px;
+        margin-bottom: 40px;
+        color: darkred;
+    }
+.card-title {
+    text-decoration: none;
+    color: darkred;
+    font-family: sans-serif; 
+}
+.edit-button{
+    border-radius: 12px;
+    color: red;
+    background-color: white;
+    -webkit-transition-duration: 0.4s; 
+  transition-duration: 0.4s;
+  margin-left: 200px;
+}
+.edit-button:hover {
+  background-color: red;
+  color: white;
+}
+}
+.card-text {
+    font-family: Courier New;
+    color: darkblue;
+}
+.input {
+margin-top: 5px;
+    }
 #logout2 {
     margin-left:40%;
 }

@@ -4,20 +4,21 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
 
 </head>
+
 <body>
 
 <%include ../partials/_navbar.ejs %>
 
     <H1>Edit Your Product Here</H1>
     <form action="/products/<%=user%>?_method=PUT" method="POST">
-    URL: <input type="text" name="image" value="<%=product.image%>">
-    Title: <input type="text" name="title" value="<%=product.title%>">
-    Description: <input type="text" name="description" value="<%=product.description%>">
-    Price: <input type="text" name="price" value="<%=product.price%>">
-    <button type='submit'>Submit</button>
+    <input class="input" type="text" name="image" value="<%=product.image%>"> Image URL<br>
+    <input class="input" type="text" name="title" value="<%=product.title%>"> Product Title<br>
+    <input class="input" type="text" name="description" value="<%=product.description%>"> Product Description<br>
+    <input class="input" type="text" name="price" value="<%=product.price%>">    Asking Price<br>
+    <button class="input" type='submit'>Submit</button>
     </form>
 
-    <form action='/products/<%= product._id%>?_method=DELETE' method='POST'>
+    <form class="input" action='/products/<%= product._id%>?_method=DELETE' method='POST'>
 <button>Delete Item</button>
 </form>
  <%include ../partials/_footerBar.ejs %>
