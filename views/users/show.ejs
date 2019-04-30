@@ -18,14 +18,14 @@
 
 
         <h2>My swap shop: </h2>
-    <ol>    
+  <div class="card-deck row clear-fix">  
           <% for (let i = 0; i < user.products.length; i++) {%>
 
- <li>
-<div class="card mb-3" style="max-width: 70%;">
+
+<div class="card mb-8" style="max-width: 70%;">
   <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="<%=user.products[i].image%>"  class="card-img" style="max-height: 300px;" style="max-width: 300px;"alt="...">
+    <div class="col-md-8">
+      <img src="<%=user.products[i].image%>"  class="card-img" style="max-height: 600px;" style="max-width: 800px;"alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -35,22 +35,22 @@
     </div>
   </div>
 </div>
-</li>   
+ 
 
 
 
           <% } %>
 
-</ol>
+</div>
      
 
            <h2>Claimed Items: </h2>
-    <ol>    
+  <div class="card-deck row clear-fix">  
           <% for (let i = 0; i < user.purchasedProducts.length; i++) {%>
 
- <li>
+ 
 
-<div class="card mb-3" style="max-width: 900px;">
+<div class="card mb-4" style="max-width: 900px;">
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src="<%=user.purchasedProducts[i].image%>" class="card-img" alt="...">
@@ -65,13 +65,13 @@
 </div>
 
 
-</li>  
+ 
 
 
 
           <% } %>
 
-</ol>
+</div>
   
 
 

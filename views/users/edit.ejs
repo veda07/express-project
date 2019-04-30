@@ -12,22 +12,52 @@
 
 <h1> Edit Account </h1>
 
-    <form action="/users/<%=user._id%>?_method=PUT" method="POST">
-    <h4> Personal Information <h4>
-        Full Name: <input type="text" name="name" value="<%=user.name%> "><br>
-        Email:<input type="text" name="email" value="<%=user.email%>" ><br>
-        Address: <input type="text" name="address" value="<%=user.address%>" ><br>
-   
-    <h4> Account Information<h4>
-        Username: <input type="text" name="username" value="<%=user.username%>"><br>
-        Password:<input type="text" name="old-password" value=""><br>
+<div class='editAccount'>
+<form action="/users/<%=user._id%>?_method=PUT"  method="POST">
+<h4> Personal Information </h4>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Full Name</label>
+    <input type='text' name='name' class="form-control" id="full name" value="<%=user.name%>">
+  </div>
 
-       <input type="submit" >
-    </form><br>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Email Address</label>
+    <input type='text' name='email' class="form-control" id="formGroupExampleInput2" value="<%=user.email%>"">
+  </div>
+  
+   <div class="form-group">
+    <label for="formGroupExampleInput3">Address</label>
+    <input type='text' name='address' class="form-control" id="formGroupExampleInput2" value="<%=user.address%>">
+  </div>
 
-<form action='/users/<%= user._id%>?_method=DELETE' method='POST'>
-<button>Delete Account (NO GOING BACK!)</button>
+  <br>
+
+<h4> Account Information </h4>
+
+   <div class="form-group">
+    <label for="formGroupExampleInput4">Username</label>
+    <input type='text' name='username' class="form-control" id="formGroupExampleInput2" value="<%=user.username%>">
+  </div>
+
+   <div class="form-group">
+    <label for="formGroupExampleInput5">New Password</label>
+    <input type='password' name='password' class="form-control" id="formGroupExampleInput2" >
+  </div>
+       <button type="submit" class="btn btn-outline-primary">Edit Account</button>
+ </form><br>
+
+ <form action='/users/<%= user._id%>?_method=DELETE' method='POST'>
+<button type="submit" class="btn btn-outline-danger">Delete Account (NO GOING BACK!)</button>
 </form>
+</div>
+
+
+
+
+
+
+
+
  <%include ../partials/_footerBar.ejs %>
 
 </body>

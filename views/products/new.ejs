@@ -13,12 +13,7 @@
   <div class='newProduct' >
   <h1>Listing Information</h1>
 <form action="/products" method="POST">
-
-  <div class="form-group">
-    <label for="formGroupExampleInput"></label>
-    <input type='hidden' type='text' name='owner' value='<%=user._id%>' class="form-control" id="formGroupExampleInput" >
-  </div>
-
+    
   <div class="form-group">
     <label for="formGroupExampleInput2">Item</label>
     <input type='text'type='hidden'  name='title' class="form-control" id="formGroupExampleInput2" placeholder="item">
@@ -39,9 +34,27 @@
     <label for="formGroupExampleInput5">Image URL</label>
     <input type='text' name='image' class="form-control" id="formGroupExampleInput2" placeholder="add image URL of your good">
   </div>
-        <button type='submit'>Submit</button>
+  
+  </div>
 
-        
+
+        <button type="submit" class="btn btn-outline-primary">Post</button>
+
+        <div class="form-group">
+    <label for="formGroupExampleInput"></label>
+    <input type='hidden' type='text' name='owner' value='<%=user._id%>' class="form-control" id="formGroupExampleInput" >
+  </div>
+
+    <div class="form-group">
+    <label for="formGroupExampleInput"></label>
+    <input type='hidden' type='boolean' name='sold' value='false' class="form-control" id="formGroupExampleInput" >
+    </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput"></label>
+    <input type='hidden' type='number' name='authNum' value='<%=Math.floor(Math.random() * 10001);  %>' class="form-control" id="formGroupExampleInput" >
+    </div>
+
 
 </form>
 
