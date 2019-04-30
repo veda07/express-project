@@ -8,7 +8,6 @@ router.get('/login', (req, res) =>{
 })
 
 
-
 //LOGIN
  router.post('/login', async (req, res)=>{
 	try{
@@ -32,6 +31,7 @@ router.get('/login', (req, res) =>{
 		res.send(err);
 	}
 })
+
 
 
 

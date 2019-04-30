@@ -10,9 +10,6 @@
   require('./db/db')
 
 
-
-
-
   
   const usersController = require('./controllers/usersController');
   const productsController = require('./controllers/productsController');

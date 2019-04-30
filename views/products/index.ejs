@@ -3,15 +3,11 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/style.css">
 
+
 </head>
 
 <body>
 <%include ../partials/_navbar.ejs %>
-
-
-
-
-
 
 
 
@@ -23,26 +19,19 @@
   <div class="card">
     <img src="<%=products[i].image %>" class="card-img-top" alt="...">
     <div class="card-body">
-      <a href= '/products/<%=products[i]._id%>'class="card-title"><%=products[i].title %></h5></a>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <a href= '/products/<%=products[i]._id%>'class="card-title"><%=products[i].title %></a>
+      <p class="card-text"><%=products[i].description %></p>
       
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      <p class="card-text"><small class="muted">Will Trade For: <%=products[i].price %></small></p>
     </div>
 </div>
 </div>
-
+</li>
 
 
 <%}%>
   </div>
       
-
-  <% for(let i = 0; i < products.length; i++){ %>
-<li>
-<%=products[i].title %>
-</li>
-<%}%>
-</ul>
 
  <%include ../partials/_footerBar.ejs %>
 </body>

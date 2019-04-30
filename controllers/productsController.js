@@ -2,7 +2,7 @@ const express = require('express');
 const jquery = require('jquery');
 const router = express.Router();
 const Products = require('../models/Products');
-const User = require('../models/Users');
+const User       = require('../models/Users');
 
 
 
@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 
                 res.render('products/index.ejs', {
                     products: availableProducts,
-                    user: availableProducts
+                    user: foundUser
                 })
             
  } catch(err){
@@ -88,7 +88,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-
 // Show Route
 router.get('/:id', async (req, res)=>{
 
@@ -98,6 +97,7 @@ router.get('/:id', async (req, res)=>{
         res.redirect('/')
     }
   
+
 
         try {
             const foundUser = await User.findById(req.session.usersDbId)
@@ -126,6 +126,7 @@ router.get('/:id', async (req, res)=>{
 
 
 // Delete Route
+
 router.delete('/:id', async (req, res)=>{
     if (req.session.logged != true){
         res.redirect('/')
@@ -156,7 +157,6 @@ router.delete('/:id', async (req, res)=>{
     const findFoundUser = User.findOne({'products': req.params.id });
 
     const [updatedProduct, foundUser ] = await Promise.all([findUpdatedProduct, findFoundUser])
-
 
 
         if(foundUser._id != req.session.usersDbId){
@@ -250,22 +250,46 @@ res.redirect('/users/' + foundUser._id)
 
 
 
+
+router.put('/:id', async (req, res) =>{
+    try {
+    const findUpdatedProduct = Products.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    const findFoundUser = User.findOne({'products': req.params.id });
+    const [updatedProduct, foundUser ] = await Promise.all([findUpdatedProduct, findFoundUser])                 
+        if(foundUser._id != req.session.usersDbId){
+            console.log(req.session)
+            console.log('/////session//////')
+            console.log(foundUser)
+            console.log('===FOUNDUSER=====')
+              foundUser.products.remove(req.params.id);
+                await foundUser.save();
+                const newUser = await User.findById(req.session.usersDbId);
+                newUser.products.push(updatedProduct);
+                const savedNewUser = await newUser.save();
+                res.redirect('/products/' + req.params.id);
+        } else {
+         console.log('hitting, else')
+         res.redirect('/products/' + req.params.id);
+                }
+          } catch (err){
+            console.log(err)
+            res.send(err);
+        }     
+      });
+
+
+
 // Edit Route
-router.get('/:id/edit', (req, res) =>{
-Products.findByIdAndUpdate(req.params.id, req.body, (error, updatedProduct) =>{
-    User.findById(req.session.usersDbId, (error, findUser)=>{
-  if (error){
-    console.log(error)
-  } else {
-    console.log(updatedProduct);
+router.get('/:id/edit', async (req, res) =>{
+const foundProduct = await Products.findByIdAndUpdate(req.params.id)
+const foundUser = await User.findById(req.session.usersDbId)
+
 res.render('products/edit.ejs', {
-    user: req.params.id,
-    product: updatedProduct
-    
+    user: foundUser,
+    product: foundProduct
+        
         });
-        }   
-    })
-})
+           
 });
 
 

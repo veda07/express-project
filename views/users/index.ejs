@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -8,73 +9,10 @@
     <title>Document</title>
 </head>
 <body>
- <nav id="navBar"class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/">SWAP SHOP</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarNav">
-                 <span class="navbar-text">
-                      <a class="nav-link" href='/auth/login'>About</a>
-                  </span>
-                  <ul class="navbar-nav">
-                   
-                  </ul>
-                         <a class="navbar-brand" href="/"> <img id="logo"src="https://i.imgur.com/k36pIsu.png" width="150" height="90" id='logo'class="d-inline-block align-top" alt=""></a>
-              
-                  <span id = "login"class="navbar-text">
-                      <button class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter">
-                              Login
-                             </button>
-                             
-                             <!-- Modal -->
-                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                               <div class="modal-dialog modal-dialog-centered" role="document">
-                                 <div class="modal-content">
-                                   <div class="modal-header">
-                                     <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
-                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                       <span aria-hidden="true">&times;</span>
-                                     </button>
-                                   </div>
-                                   <div class="modal-body">
-                                       <div class ="login">
-                                           <form action="/auth/login" method="POST">
-                                               <div class="form-group">
-                                                 <label for="exampleInputEmail1">Email address</label>
-                                                 <input type="text" name = "username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                               </div>
-                                               <div class="form-group">
-                                                 <label for="exampleInputPassword1">Password</label>
-                                                 <input type = "password" name = "password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                               </div>
-                                               </div>
-                                   </div>
-                                   <div class="modal-footer">
-                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                     <button type="submit" class="btn btn-primary">Login</button>
-                                   </div>
-                                 </div>
-                               </div>
-                             </div>
-                       
-                        </a>
-                  </span>
-                  <span id = "register"class="navbar-text">
-                      <a class="nav-link" href='/users/new'>Register</a>
-                  </span>
-                </div>
-              </nav>
-    <h1>User Index Page</h1>
-<ul>
-   <% for(let i =0; i< users.length;i++){ %>
-        <li>
-            <a href="/users/<%=users[i]._id%>"><%=users[i].username%></a>
-        </li>
-    <% } %>
-<ul>
- <%include ../partials/_footerBar.ejs %>
+
+
+     <a href="/">Whatcha Lookin for?  Quit snooping!  You aren't supposed to find this page!</a>
+
 
 
 </body>

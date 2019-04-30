@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="/style.css">
     <title>Document</title>
 </head>
+<style>
+    .buttons {
+        display: inline-block;
+    }
+
+</style>
 <body>
 <%include ../partials/_navbar.ejs %>
 
@@ -19,12 +26,14 @@
  <h2 class="card-title"> <%=product.title%></h2>
     <figure class="figure">
   <img src="<%= product.image %>" class="figure-img img-fluid rounded" alt="...">
+
   <p><%=product.description%></p>
     <figcaption class="figure-caption">would swap for: <%=product.price%></figcaption>
 </figure>
 
 
     <a href= '/products'>
+
     <p>
   <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
    Get Owners Info

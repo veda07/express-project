@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -8,80 +8,76 @@
 
     <title>Document</title>
 </head>
+<style>
+  li {
+    display: inline-block;
+}
+
+</style>
 <body>
 <%include ../partials/_navbar.ejs %>
 
 
+
     <h1><%= user.username%> </h1>
 <%= user.name%><br>
-<%= user.address%><br><br>
+<%= user.address%><br>
+<a href="/users/<%=user._id%>/edit">Edit Account</a><br><br><br>
+
 
 
         <h2>My swap shop: </h2>
   <div class="card-deck row clear-fix">  
           <% for (let i = 0; i < user.products.length; i++) {%>
 
+ <li>
 
-<div class="card mb-8" style="max-width: 70%;">
+<div class="card mb-3" style="max-width: 500px;">
   <div class="row no-gutters">
-    <div class="col-md-8">
-      <img src="<%=user.products[i].image%>"  class="card-img" style="max-height: 600px;" style="max-width: 800px;"alt="...">
+    <div class="col-md-4">
+      <img src="<%=user.products[i].image%>"  class="card-img" style="max-height: 200px;" style="max-width: 200px;"alt="...">
+
     </div>
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title"><a href="/products/<%=user.products[i]._id%>"><%=user.products[i].title %></a></h5>
         <p class="card-text"><%=user.products[i].description%></p>
+        <p class="card-text">Will Trade For: <%= user.products[i].price%></p>
+        <a href="/products/<%=user.products[i]._id%>/edit" ><button class="edit-button">Edit</button></a>
+
       </div>
     </div>
   </div>
 </div>
- 
-
-
-
+</li>   
           <% } %>
 
+</ol>
 </div>
-     
-
            <h2>Claimed Items: </h2>
-  <div class="card-deck row clear-fix">  
+<ol>    
           <% for (let i = 0; i < user.purchasedProducts.length; i++) {%>
 
- 
+ <li>
+  <div class="card mb-3" style="max-width: 300px;">
+   <div class="row no-gutters">
 
-<div class="card mb-4" style="max-width: 900px;">
-  <div class="row no-gutters">
     <div class="col-md-4">
       <img src="<%=user.purchasedProducts[i].image%>" class="card-img" alt="...">
     </div>
+    
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title"><a href="/products/<%=user.purchasedProducts[i]._id%>"><%=user.purchasedProducts[i].title %></a>
-        <p class="card-text"><%=user.purchasedProducts[i].description%></p>
+        <p class="card-text"><%=user.purchasedProducts[i].description%><br><%=user.purchasedProducts[i].price%></p><br>
       </div>
     </div>
   </div>
 </div>
-
-
- 
-
-
-
+</li>  
           <% } %>
+</ol>
 
-</div>
-  
-
-
- 
- 
-
-
-
-
-<a href="/users/<%=user._id%>/edit">Edit Account</a>
 
  <%include ../partials/_footerBar.ejs %>
 

@@ -2,7 +2,7 @@ const express     = require('express');
 const router      = express.Router();
 const Products    = require('../models/Products');
 const User       = require('../models/Users');
-const bcrypt      = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 
 
@@ -46,6 +46,7 @@ router.post('/', async (req, res)=>{
         userDbEntry.products = [];
         
         const createdUser = await User.create(userDbEntry);
+
         req.session.usersDbId = createdUser._id;
         req.session.logged = true;
         //console.log(req.session, ' successful in login');
@@ -59,6 +60,7 @@ router.post('/', async (req, res)=>{
    }
    
  })
+
 
 //SHOW
 router.get('/:id', async (req, res) => {
@@ -123,7 +125,6 @@ router.put('/:id',async (req, res)=>{
     }
 
 })
-
 
 
 
