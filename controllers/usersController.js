@@ -71,10 +71,15 @@ router.get('/:id', async (req, res) => {
     const foundUser = await User.findById(req.params.id)
     .populate('products')
     .exec()
-    //console.log(foundUser)
+
+    console.log(foundUser)
+    console.log('//////////////////////FOUND USER////////////')
+
+    
     res.render('users/show.ejs', {
         user: foundUser
     })
+
 
     } catch (err){
         res.send(err)
@@ -116,7 +121,7 @@ router.put('/:id',async (req, res)=>{
 })
 
 
-// DELETE USER
+
 router.delete('/:id',async (req, res)=>{
     if (req.session.logged != true){
         res.redirect('/')
@@ -133,6 +138,7 @@ res.redirect('/users')
         res.send(err)
     }
 });
+
 
 
 

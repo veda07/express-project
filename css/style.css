@@ -1,12 +1,5 @@
-h1 {
-    font-family: Annie Use Your Telescope, Courier;
-    color: darkred;
-}
 
-body {
-        background-color: lightgrey;
-        color: darkblue;
-}
+
 
 a {
 
@@ -34,6 +27,27 @@ a {
     margin-left: 2%;
 }
 .showProduct {
-    margin-left:30%;
-    width: 60%;
+    margin-left:3%;
+ 
 }
+.footer {
+    margin-top: 30%;
+}
+#logo {
+    margin-left:250px;
+}
+#login {
+    margin-right:-80px;
+    margin-left:300px;
+
+}
+#logout2 {
+    margin-left:40%;
+}
+.registration {
+    width: 40%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+

@@ -74,52 +74,38 @@ router.post('/', async (req, res) => {
 });
 
 // Show Route
-router.get('/:id', (req, res)=>{
+router.get('/:id', async (req, res)=>{
     if (req.session.logged != true){
         res.redirect('/')
     }
-    console.log(req.session.usersDbEntry)
+  
 
 
-    User.findById(req.session.usersDbId, (err, foundUser)=>{
+        try {
+            const foundUser = await User.findById(req.session.usersDbId)
+           
 
-    Products.findById(req.params.id, (err, foundProduct)=>{
-        
-        if(err){
-            console.log(err)
-        } else {
+            const foundProduct = await Products.findById(req.params.id)//.populate('owner');
+           
+       
+
+            console.log(foundProduct)
+
+            console.log('//////////////////////////////')
+            
             res.render('products/show.ejs', {
                 product: foundProduct,
                 user: foundUser
-            })
+            });
+
+        } catch (err){
+        res.send(err)
         }
-    })    
-    })
+ 
+
 })
 
-// Show Route
-router.get('/:id', (req, res)=>{
-    if (req.session.logged != true){
-        res.redirect('/')
-    }
-    console.log(req.session.usersDbEntry)
 
-console.log('//////////////////////////////')
-    User.findById(req.session.usersDbId, (err, foundUser)=>{
-
-    Products.findById(req.params.id, (err, foundProduct)=>{
-        
-        if(err){
-            console.log(err)
-        } else {
-            res.render('products/show.ejs', {
-                product: foundProduct,
-                user: foundUser
-            })
-        }
-    })    
-    })
-})
 
 // Delete Route
 
@@ -185,6 +171,58 @@ router.delete('/:id', async (req, res)=>{
                console.log(err)
                res.send(err);
              }
+
+});
+
+ // UPDATE 
+ router.put('/buy/:product/:owner', async (req, res) =>{
+   console.log('hit route')
+ 
+
+
+
+
+const foundProduct = await Products.findById(req.params.product)
+console.log(foundProduct)
+console.log('//////////FOUND PRODUCT/////////////////////////////////')
+const foundOwner = await User.findById(req.params.owner)
+console.log(foundOwner)
+console.log('//////////FOUND OWNER/////////////////////////////////')
+
+
+
+
+//FOUDN USER AND ADDED PRODUCT TO PURCHASED PRODUCTS ARRAY
+const foundUser = await User.findById(req.session.usersDbId)
+console.log(foundUser)
+console.log('//////////FOUND USER/////////////////////////////////')
+
+
+foundUser.purchasedProducts.push(foundProduct._id)
+console.log(foundUser)
+console.log('//////////FOUND USER before save/////////////////////////////////')
+
+foundUser.save()
+console.log(foundUser)
+console.log('//////////FOUND USER after save/////////////////////////////////')
+
+console.log(foundOwner.products)
+console.log('//////////FOUND OWNER products before DELETE/////////////////////////////////')
+//FIND OWNER AND DELETE PORODUCT FROM OWNERS PORDUCTS ARRAY
+foundOwner.products.remove(foundProduct)
+console.log(foundOwner.products)
+console.log('//////////FOUND OWNER products/////////////////////////////////')
+foundOwner.save()
+
+foundProduct.delete(foundProduct)
+
+foundProduct.save()
+
+
+res.redirect('/users/' + foundUser._id)
+
+
+
 
 });
 
