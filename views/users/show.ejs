@@ -21,7 +21,9 @@
 
     <h1><%= user.username%> </h1>
 <%= user.name%><br>
-<%= user.address%><br><br>
+<%= user.address%><br>
+<a href="/users/<%=user._id%>/edit">Edit Account</a><br><br><br>
+
 
 
         <h2>My swap shop: </h2>
@@ -51,7 +53,7 @@
           <% } %>
 
 </ol>
-
+</div>
            <h2>Claimed Items: </h2>
 <ol>    
           <% for (let i = 0; i < user.purchasedProducts.length; i++) {%>
@@ -76,9 +78,6 @@
           <% } %>
 </ol>
 
-
-
-<a href="/users/<%=user._id%>/edit">Edit Account</a>
 
  <%include ../partials/_footerBar.ejs %>
 
