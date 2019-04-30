@@ -9,19 +9,18 @@
 </head>
 <body>
 <%include ../partials/_navbar.ejs %>
-    <h1>Product Show Route</h1>
+
 
     
   
 
 
-
 <div class= 'showProduct'>
-
+ <h2 class="card-title"> <%=product.title%></h2>
     <figure class="figure">
   <img src="<%= product.image %>" class="figure-img img-fluid rounded" alt="...">
-     <h5 class="card-title"> <%=product.title%></h5>
-  <figcaption class="figure-caption"><%=product.description%></figcaption>
+  <p><%=product.description%></p>
+    <figcaption class="figure-caption">would swap for: <%=product.price%></figcaption>
 </figure>
 
 
@@ -35,16 +34,26 @@
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
    <%=product.owner%> 
+   <form action='buy/<%=product._id%>/<%=product.owner%>?_method=PUT' method='POST' >
+   Verification Code: <input id= 'verification-code'type=text>
+<button  class='buyNow'> Claim  Now </button>
+<form>
  </div>
 </div>
 </div>
 
 
-<button  class='buyNow'> <a href='buy/<%=product._id%>/<%=product.owner%>'>BUY NOW</a> </button>
+
+
+
+
+
+
+
 
 
 <form action='/products/<%= product._id%>?_method=DELETE' method='POST'>
-<button>Delete Product</button>
+<button>Delete Product(WILL REMOVE)</button>
 </form>
    <%include ../partials/_footerBar.ejs %>
    

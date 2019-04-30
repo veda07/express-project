@@ -12,28 +12,31 @@
 <%include ../partials/_navbar.ejs %>
 
 
-    <h1><%= user.username%>'s' Page</h1>
-
-Personal Info:<br>
+    <h1><%= user.username%> </h1>
 <%= user.name%><br>
-<%= user.email%><br>
 <%= user.address%><br><br>
 
 
-        <h2><%= user.username %>'s Products for Sale </h2>
+        <h2>My swap shop: </h2>
     <ol>    
           <% for (let i = 0; i < user.products.length; i++) {%>
 
  <li>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-  <img src="<%=user.products[i].image%>" class="card-img-top" alt="...">
-   <h5 class="card-title"><%=user.products[i].title%></h5>
-   <p class="card-text"><%=user.products[i].description%></p>
-   <a href="/products/<%=user.products[i]._id%>/edit" class="btn btn-primary">Edit Item</a>
-  </div>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="<%=user.products[i].image%>"  class="card-img" alt="...">
     </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="/products/<%=user.products[i]._id%>"><%=user.products[i].title %></a></h5>
+        <p class="card-text"><%=user.products[i].description%></p>
+      </div>
+    </div>
+  </div>
+</div>
 </li>   
+
 
 
           <% } %>
@@ -41,19 +44,29 @@ Personal Info:<br>
 </ol>
      
 
-           <h2><%= user.username %>'s Products Purchased </h2>
+           <h2>Claimed Items: </h2>
     <ol>    
           <% for (let i = 0; i < user.purchasedProducts.length; i++) {%>
 
  <li>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-  <img src="<%=user.purchasedProducts[i].image%>" class="card-img-top" alt="...">
-   <h5 class="card-title"><%=user.purchasedProducts[i].title%></h5>
-   <p class="card-text"><%=user.purchasedProducts[i].description%></p>
-  </div>
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="<%=user.purchasedProducts[i].image%>" class="card-img" alt="...">
     </div>
-</li>   
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="/products/<%=user.purchasedProducts[i]._id%>"><%=user.purchasedProducts[i].title %></a>
+        <p class="card-text"><%=user.purchasedProducts[i].description%></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</li>  
+
 
 
           <% } %>

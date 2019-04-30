@@ -69,10 +69,15 @@ router.get('/:id', async (req, res) => {
     const foundUser = await User.findById(req.params.id)
     .populate('products')
     .exec()
-    //console.log(foundUser)
+
+    console.log(foundUser)
+    console.log('//////////////////////FOUND USER////////////')
+
+    
     res.render('users/show.ejs', {
         user: foundUser
     })
+
 
     } catch (err){
         res.send(err)
@@ -114,28 +119,24 @@ router.put('/:id',async (req, res)=>{
 })
 
 
+
+
 router.delete('/:id',async (req, res)=>{
     if (req.session.logged != true){
         res.redirect('/')
     }
 try {
-
-const deletedUser = await  User.findByIdAndDelete(req.session.usersDbId);
-console.log(deletedUser)
-
-//const foundProducts = await Products.deleteMany({ owner: user.id})
-
-
-
+const foundUser = await  User.findById(req.params.id);
+console.log(foundUser.products);
+const foundProduct = await Products.findById(foundUser.products);
+const deletedProducts = await Products.deleteMany({ owner: { $in: [ foundUser._id]}});
+const deletedUser = await User.deleteOne(foundUser);
 res.redirect('/users')
     } catch(err){
         console.log(err)
         res.send(err)
     }
 });
-
-// Character.deleteMany({ name: /Stark/, age: { $gte: 18 } }, function (err) {});
-
 
 
 

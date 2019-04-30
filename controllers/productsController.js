@@ -83,10 +83,11 @@ router.get('/:id', async (req, res)=>{
 
         try {
             const foundUser = await User.findById(req.session.usersDbId)
+           
 
             const foundProduct = await Products.findById(req.params.id)
-
-          .populate('owner')
+           
+       
 
             console.log(foundProduct)
 
@@ -173,7 +174,7 @@ router.delete('/:id', async (req, res)=>{
 });
 
  // UPDATE 
- router.get('/buy/:product/:owner', async (req, res) =>{
+ router.put('/buy/:product/:owner', async (req, res) =>{
    console.log('hit route')
  
 
