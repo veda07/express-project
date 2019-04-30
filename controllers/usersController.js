@@ -68,9 +68,11 @@ router.get('/:id', async (req, res) => {
         res.redirect('/')
     }
     try{
+    //  console.log(foundUser)
     const foundUser = await User.findById(req.params.id)
     .populate('products')
-    .exec()
+    .populate('purchasedProducts')
+    .exec();
 
     console.log(foundUser)
     console.log('//////////////////////FOUND USER////////////')
@@ -86,6 +88,10 @@ router.get('/:id', async (req, res) => {
     }
 
 })
+
+// 5cc8901eb1d4f8603ce1eb30,
+//      5cc89075b1d4f8603ce1eb32,
+//      5cc890dcb1d4f8603ce1eb35 
 
 
 //EDIT

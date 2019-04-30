@@ -25,7 +25,7 @@
 
 
         <h2>My swap shop: </h2>
-    <ol>    
+  <div class="card-deck row clear-fix">  
           <% for (let i = 0; i < user.products.length; i++) {%>
 
  <li>
@@ -34,6 +34,7 @@
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src="<%=user.products[i].image%>"  class="card-img" style="max-height: 200px;" style="max-width: 200px;"alt="...">
+
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -58,6 +59,7 @@
  <li>
   <div class="card mb-3" style="max-width: 300px;">
    <div class="row no-gutters">
+
     <div class="col-md-4">
       <img src="<%=user.purchasedProducts[i].image%>" class="card-img" alt="...">
     </div>
@@ -73,6 +75,7 @@
 </li>  
           <% } %>
 </ol>
+
 
 
 <a href="/users/<%=user._id%>/edit">Edit Account</a>

@@ -42,11 +42,22 @@
 </p>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
-   <%=product.owner%> 
-   <form action='buy/<%=product._id%>/<%=product.owner%>?_method=PUT' method='POST' >
-   Verification Code: <input id= 'verification-code'type=text>
+   <%=product.owner.name%>
+   <a href='mailto:<%=product.owner.email%>'><%=product.owner.email%></a>
+
+
+
+   <form action='buy/<%=product._id%>/<%=product.owner._id%>?_method=PUT' method='POST' >
+
+
+   Verification Code: <input name='authCode' id= 'verification-code'type=text>
+
 <button  class='buyNow'> Claim  Now </button>
+   
 <form>
+
+ 
+
  </div>
 </div>
 </div>

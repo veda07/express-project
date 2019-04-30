@@ -12,14 +12,28 @@ router.get('/', async (req, res) => {
         res.redirect('/')
     }
     try {
-       const foundProduct = await  Products.find({})
-       const foundUser = await User.findById(req.session.usersDbId)
-       console.log(req.session.usersDbId)
-        res.render('products/index.ejs', {
-            products: foundProduct,
-            user: foundUser
-        })
-    } catch(err){
+
+                let foundProduct = await  Products.find({})
+       
+                const foundUser = await User.findById(req.session.usersDbId)
+                console.log(foundProduct)
+                console.log('////////found products////////////')
+                //console.log(req.session.usersDbId)
+
+                //for (let i =0; i < foundProduct.length; i++) {
+                
+                const availableProducts = await Products.find({sold: { $in: [false]}})
+
+                console.log(availableProducts)
+                console.log('////////////Available products/////////////////////////')
+        
+
+                res.render('products/index.ejs', {
+                    products: availableProducts,
+                    user: availableProducts
+                })
+            
+ } catch(err){
         res.send(err)
         console.log(err)
     }
@@ -51,15 +65,16 @@ router.post('/', async (req, res) => {
         res.redirect('/')
     }
     try {
+        //req.body.owner = req.session.usersDbId
         const newProduct = await Products.create(req.body)
         console.log(newProduct)
         console.log('/////////////NEW PRODUCT ^///////////////////')
-        console.log(req.session.usersDbId)
-        console.log('/////////////req.session^///////////////////')
+        // console.log(req.session.usersDbId)
+        // console.log('/////////////req.session^///////////////////')
 
         const foundUser = await User.findById(req.session.usersDbId)
         foundUser.products.push(newProduct._id);
-        foundUser.save((err, savedUser) => {
+        await foundUser.save((err, savedUser) => {
             console.log(savedUser)
         })
             // Console/log('////////////////////////////////')
@@ -75,6 +90,9 @@ router.post('/', async (req, res) => {
 
 // Show Route
 router.get('/:id', async (req, res)=>{
+
+
+
     if (req.session.logged != true){
         res.redirect('/')
     }
@@ -85,7 +103,7 @@ router.get('/:id', async (req, res)=>{
             const foundUser = await User.findById(req.session.usersDbId)
            
 
-            const foundProduct = await Products.findById(req.params.id)//.populate('owner');
+            const foundProduct = await Products.findById(req.params.id).populate('owner');
            
        
 
@@ -184,7 +202,11 @@ router.delete('/:id', async (req, res)=>{
 
 const foundProduct = await Products.findById(req.params.product)
 console.log(foundProduct)
-console.log('//////////FOUND PRODUCT/////////////////////////////////')
+console.log('//////////FOUND PRODUCT BEFORE SOLD/////////////////////////////////')
+foundProduct.sold = true
+console.log(foundProduct)
+console.log('//////////FOUND PRODUCT AFTER SOLD/////////////////////////////////')
+
 const foundOwner = await User.findById(req.params.owner)
 console.log(foundOwner)
 console.log('//////////FOUND OWNER/////////////////////////////////')
@@ -202,21 +224,21 @@ foundUser.purchasedProducts.push(foundProduct._id)
 console.log(foundUser)
 console.log('//////////FOUND USER before save/////////////////////////////////')
 
-foundUser.save()
+await foundUser.save()
 console.log(foundUser)
 console.log('//////////FOUND USER after save/////////////////////////////////')
 
 console.log(foundOwner.products)
 console.log('//////////FOUND OWNER products before DELETE/////////////////////////////////')
-//FIND OWNER AND DELETE PORODUCT FROM OWNERS PORDUCTS ARRAY
-foundOwner.products.remove(foundProduct)
-console.log(foundOwner.products)
+//FIND OWNER AND DELETE PORODUCT FROM OWNERS PRODUCTS ARRAY
+//foundOwner.products.remove(foundProduct)
+//console.log(foundOwner.products)
 console.log('//////////FOUND OWNER products/////////////////////////////////')
-foundOwner.save()
+await foundOwner.save()
 
-foundProduct.delete(foundProduct)
+//foundProduct.delete(foundProduct)
 
-foundProduct.save()
+await foundProduct.save()
 
 
 res.redirect('/users/' + foundUser._id)
