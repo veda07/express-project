@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+      <link rel="stylesheet" type="text/css" href="/style.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="/style.css">
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <title>Document</title>
 </head>
+
 <body>
+
+
 <%include ../partials/_navbar.ejs %>
 
 <h1> Edit Account </h1>
 
     <form action="/users/<%=user._id%>?_method=PUT" method="POST">
     <h4> Personal Information <h4>
-        Full Name: <input type="text" name="name" value="<%=user.name%> "><br>
-        Email:<input type="text" name="email" value="<%=user.email%>" ><br>
-        Address: <input type="text" name="address" value="<%=user.address%>" ><br>
+        <input class="input" type="text" name="name" value="<%=user.name%>"> Full Name<br>
+        <input class="input" type="text" name="email" value="<%=user.email%>"> Email Address<br>
+        <input class="input" type="text" name="address" value="<%=user.address%>"> Shipping Address<br><br><br>
    
     <h4> Account Information<h4>
-        Username: <input type="text" name="username" value="<%=user.username%>"><br>
-        Password:<input type="text" name="old-password" value=""><br>
+        <input class="input" type="text" name="username" value="<%=user.username%>"> Username<br>
+        <input class="input" type="text" name="old-password" value=""> Password<br><br>
 
        <input type="submit" >
-    </form><br>
+    </form><br><br><br>
 
 <form action='/users/<%= user._id%>?_method=DELETE' method='POST'>
 <button>Delete Account (NO GOING BACK!)</button>
+
 </form>
+</div>
+
+
+
+
+
+
+
+
  <%include ../partials/_footerBar.ejs %>
 
 </body>

@@ -1,39 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <title>Document</title>
 </head>
+<style>
+    .buttons {
+        display: inline-block;
+    }
+
+</style>
 <body>
 <%include ../partials/_navbar.ejs %>
-    <h1>Product Show Route</h1>
 
-   
-    <ul>
-    <li>Title: <%=product.title%></li>
-    <li>Price: <%=product.price%></li>
-    <li>Description: <%=product.description%></li>
-    </ul>
+
     
   
 
-<img src="<%=product.image%>" class="img-fluid" alt="Responsive image">
-
 
 <div class= 'showProduct'>
-
+ <h2 class="card-title"> <%=product.title%></h2>
     <figure class="figure">
   <img src="<%= product.image %>" class="figure-img img-fluid rounded" alt="...">
-     <h5 class="card-title"> <%=product.title%></h5>
-  <figcaption class="figure-caption"><%=product.description%></figcaption>
+
+  <p><%=product.description%></p>
+    <figcaption class="figure-caption">would swap for: <%=product.price%></figcaption>
 </figure>
 
 
-    <a href= '/products'>
+ 
+
     <p>
   <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
    Get Owners Info
@@ -42,13 +42,42 @@
 </p>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
-<%=product.owner%>  </div>
-</div>
-</div>
-<button class='buyNow'> BUY NOW </button>
+   <%=product.owner.name%>
+   <a href='mailto:<%=product.owner.email%>'><%=product.owner.email%></a>
 
+
+
+   <form action='buy/<%=product._id%>/<%=product.owner._id%>?_method=PUT' method='POST' >
+
+
+   Verification Code: <input name='authCode' id= 'verification-code'type=text>
+
+<button  class='buyNow'> Claim  Now </button>
+   
+<form>
+
+ 
+
+ </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<form action='/products/<%= product._id%>?_method=DELETE' method='POST'>
+<button>Delete Product(WILL REMOVE)</button>
+</form>
    <%include ../partials/_footerBar.ejs %>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+   
+
 
 </body>
 </html>

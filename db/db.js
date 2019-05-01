@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost/project4';
+// const connectionString = 'mongodb://localhost/project10';
+const connectionString = process.env.MONGODB_URI;
+
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
@@ -19,3 +21,5 @@ mongoose.connection.on('disconnected', () => {
 mongoose.connection.on('error', (error) => {
   console.log('mongoose error ', error);
 });
+
+

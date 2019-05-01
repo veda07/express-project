@@ -2,7 +2,7 @@ const express     = require('express');
 const router      = express.Router();
 const Products    = require('../models/Products');
 const User       = require('../models/Users');
-const bcrypt      = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 
 
@@ -46,6 +46,7 @@ router.post('/', async (req, res)=>{
         userDbEntry.products = [];
         
         const createdUser = await User.create(userDbEntry);
+
         req.session.usersDbId = createdUser._id;
         req.session.logged = true;
         //console.log(req.session, ' successful in login');
@@ -60,25 +61,37 @@ router.post('/', async (req, res)=>{
    
  })
 
+
 //SHOW
 router.get('/:id', async (req, res) => {
     if (req.session.logged != true){
         res.redirect('/')
     }
     try{
+    //  console.log(foundUser)
     const foundUser = await User.findById(req.params.id)
     .populate('products')
-    .exec()
-    //console.log(foundUser)
+    .populate('purchasedProducts')
+    .exec();
+
+    console.log(foundUser)
+    console.log('//////////////////////FOUND USER////////////')
+
+    
     res.render('users/show.ejs', {
         user: foundUser
     })
+
 
     } catch (err){
         res.send(err)
     }
 
 })
+
+// 5cc8901eb1d4f8603ce1eb30,
+//      5cc89075b1d4f8603ce1eb32,
+//      5cc890dcb1d4f8603ce1eb35 
 
 
 //EDIT
@@ -114,22 +127,23 @@ router.put('/:id',async (req, res)=>{
 })
 
 
-//DELETE USER
+
 router.delete('/:id',async (req, res)=>{
     if (req.session.logged != true){
         res.redirect('/')
     }
 try {
-const foundUser = await  User.findByIdAndDelete(req.params.id);
+const foundUser = await  User.findById(req.params.id);
+console.log(foundUser.products);
+const foundProduct = await Products.findById(foundUser.products);
+const deletedProducts = await Products.deleteMany({ owner: { $in: [ foundUser._id]}});
 const deletedUser = await User.deleteOne(foundUser);
 res.redirect('/users')
-
     } catch(err){
         console.log(err)
         res.send(err)
     }
 });
-
 
 
 

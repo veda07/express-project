@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/style.css">
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
   
   
 
@@ -14,34 +14,48 @@
   <div class='newProduct' >
   <h1>Listing Information</h1>
 <form action="/products" method="POST">
-
+    
   <div class="form-group">
-    <label for="formGroupExampleInput">Owner</label>
-    <input type='text' name='owner' value='<%=user._id%>' class="form-control" id="formGroupExampleInput" >
-  </div>
-
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Item</label>
-    <input type='text' name='title' class="form-control" id="formGroupExampleInput2" placeholder="name of good">
+    <label for="formGroupExampleInput2">Product Name:</label>
+    <input type='text'type='hidden'  name='title' class="form-control" id="formGroupExampleInput2" placeholder="Give a Title for your listing">
   </div>
   
+
    <div class="form-group">
-    <label for="formGroupExampleInput3">Price</label>
-    <input type='number' name='price' class="form-control" id="formGroupExampleInput2" placeholder="price">
+    <label for="formGroupExampleInput4">Brief Description:</label>
+    <input type='text' name='description' class="form-control" id="formGroupExampleInput2" placeholder="Describe your listing here">
   </div>
 
    <div class="form-group">
-    <label for="formGroupExampleInput4">Description</label>
-    <input type='text' name='description' class="form-control" id="formGroupExampleInput2" placeholder="descriptiion">
+    <label for="formGroupExampleInput3">Interested in Trading?</label>
+    <input type='string' name='price' class="form-control" id="formGroupExampleInput2" placeholder="What would you take in trade?">
   </div>
 
    <div class="form-group">
-    <label for="formGroupExampleInput5">Image URL</label>
-    <input type='text' name='image' class="form-control" id="formGroupExampleInput2" placeholder="add image URL of your good">
+    <label for="formGroupExampleInput5">Photos of your product:</label>
+    <input type='text' name='image' class="form-control" id="formGroupExampleInput2" placeholder="add image URL of your product">
   </div>
-        <button type='submit'>Submit</button>
+  
+  </div>
 
-        
+
+        <button type="submit" class="btn btn-outline-primary">Post</button>
+
+        <div class="form-group">
+    <label for="formGroupExampleInput"></label>
+    <input type='hidden' type='text' name='owner' value='<%=user._id%>' class="form-control" id="formGroupExampleInput" >
+  </div>
+
+    <div class="form-group">
+    <label for="formGroupExampleInput"></label>
+    <input type='hidden' type='boolean' name='sold' value='false' class="form-control" id="formGroupExampleInput" >
+    </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput"></label>
+    <input type='hidden' type='number' name='authNum' value='<%=Math.floor(Math.random() * 10001);  %>' class="form-control" id="formGroupExampleInput" >
+    </div>
+
 
 </form>
 

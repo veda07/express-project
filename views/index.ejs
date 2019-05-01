@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+      <link rel="stylesheet" type="text/css" href="/style.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,44 +13,91 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Document</title>
 </head>
+<style>
+    img {
+        height: 90px;
+        width: 120px;
+    }
+    .image {
+        height: 180px;
+        width: 240px;
+        max-width:240px;
+        display: inline-block;
+        margin: 10px;
+        margin-bottom: 40px;
+    }
+
+</style>
 <body>
 <div class="container-fluid">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <img src="https://www.logodesignlove.com/images/evolution/ebay-logo-01.jpg" width="50" height="50" class="d-inline-block align-top" alt="">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-
-      <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    </ul>
-    <span class="navbar-text">
-        <a class="nav-link" href='/auth/login'>Login</a>
-    </span>
-    <span class="navbar-text">
-        <a class="nav-link" href='/users/new'>Register</a>
-    </span>
-  </div>
-</nav>
+ <nav id="navBar"class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">SWAP SHOP</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                 <span class="navbar-text">
+                      <a class="nav-link" href='/auth/login'>About</a>
+                  </span>
+                  <ul class="navbar-nav">
+                   
+                  </ul>
+                         <a class="navbar-brand" href="/"> <img id="logo"src="https://i.imgur.com/k36pIsu.png" width="150" height="90" id='logo'class="d-inline-block align-top" alt=""></a>
+              
+                  <span id = "login"class="navbar-text">
+                      <button class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter">
+                              Login
+                             </button>
+                             
+                             <!-- Modal -->
+                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                               <div class="modal-dialog modal-dialog-centered" role="document">
+                                 <div class="modal-content">
+                                   <div class="modal-header">
+                                     <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                     </button>
+                                   </div>
+                                   <div class="modal-body">
+                                       <div class ="login">
+                                           <form action="/auth/login" method="POST">
+                                               <div class="form-group">
+                                                 <label for="exampleInputEmail1">Email address</label>
+                                                 <input type="text" name = "username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                               </div>
+                                               <div class="form-group">
+                                                 <label for="exampleInputPassword1">Password</label>
+                                                 <input type = "password" name = "password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                               </div>
+                                               </div>
+                                   </div>
+                                   <div class="modal-footer">
+                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                     <button type="submit" class="btn btn-primary">Login</button>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                       
+                        </a>
+                  </span>
+                  <span id = "register"class="navbar-text">
+                      <a class="nav-link" href='/users/new'>Register</a>
+                  </span>
+                </div>
+                
+              </nav>
 
 <div class="jumbotron">
-  <h1 class="display-4">Hello, MFs!</h1>
-  <p class="lead">This is a third-party ecommerce website.</p>
+  <h1 class="display-4">Time to Start Swapping!</h1>
+  <p class="lead">Buy/Sell/Trade - We have it all!</p>
   <hr class="my-4">
-  <p>Unlike most conventional eCommerce website, (PAGE-NAME) allowes users to post products price free and let customers decide its value.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  <p>Unlike most conventional eCommerce website, Swap Shop allows users to list potential trade options in addition to their listed selling price.</p>
+
+  <a class="btn btn-primary btn-lg" href="/" role="button">Learn more</a>
 </div>
 
 
@@ -60,25 +110,22 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/81nsr0LPsYL._SX425_.jpg" class="d-block w-50" alt="...">
-        <div class="carousel-caption">
-          <h5>COOL BIKE</h5>
-          <p>Cool 12-speed orange bike. Buy now!</p>
-        </div>
+        <img class="image" src="https://images-na.ssl-images-amazon.com/images/I/81nsr0LPsYL._SX425_.jpg" class="d-block w-50" alt="...">
+        <img class="image" src="http://www.medievalcollectibles.com/images/Product/large/Game-21.png" class="d-block w-50" alt="...">
+        <img class="image" src="https://dirtbikepartsused.com/products/photos/YZ450F-YZ450-F-DIRTBIKE-2.jpg" class="d-block w-50" alt="...">
+        <img class="image" src="https://www.swissluxury.com/product_images/126334bldo.jpg" class="d-block w-50" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="https://www.regencyshop.com/images/saarinen-womb-chair.jpg" class="d-block w-50" alt="...">
-        <div class="carousel-caption">
-          <h5>SICK CHAIR!</h5>
-          <p>Cool red chair with chrome legs. Buy now!</p>
-        </div>
+        <img class="image" src="https://www.regencyshop.com/images/saarinen-womb-chair.jpg" class="d-block w-50" alt="...">
+        <img class="image" src="https://antiquecameras.net/images/609_home-page-websa2.jpg" alt="...">
+        <img class="image" src="https://article.images.consumerreports.org/prod/content/dam/CRO%20Images%202017/Magazine-Articles/April/CR-Inline-top-picks-Toyota-Yaris-02-17" alt="...">
+        <img class="image" src="https://www.lg.com/au/images/smartphones/md05878255/gallery/V30-medium01.jpg" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="https://i.pinimg.com/originals/a1/8a/31/a18a31aa44c98612932c82959e8e8936.jpg" class="d-block w-50" alt="...">
-        <div class="carousel-caption">
-          <h5>No idea what this is!</h5>
-          <p>Honestly have no idea what this is but buy now!</p>
-        </div>
+        <img class="image" src="https://i.pinimg.com/originals/a1/8a/31/a18a31aa44c98612932c82959e8e8936.jpg" class="d-block w-50" alt="...">
+        <img class="image" src="https://s7d2.scene7.com/is/image/academy/20021530?wid=250&hei=250" class="d-block w-50" alt="...">
+        <img class="image" src="https://saddlebackleather.com/media/catalog/product/cache/0f831c1845fc143d00d6d1ebc49f446a/s/l/slim-leather_briefcase-saddleback-leather-full_grain-laptop-bag-brown-side.jpg" class="d-block w-50" alt="...">
+        <img class="image" src="https://images-na.ssl-images-amazon.com/images/I/61XwqksgbaL._SX425_.jpg" class="d-block w-50" alt="...">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -92,10 +139,9 @@
   </div>
 </div>
 
-
   
 
- <%include ./partials/_footerBar.ejs %>
+  <%include ./partials/_footerBar.ejs %>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

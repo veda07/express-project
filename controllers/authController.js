@@ -8,7 +8,6 @@ router.get('/login', (req, res) =>{
 })
 
 
-
 //LOGIN
  router.post('/login', async (req, res)=>{
 	try{
@@ -36,12 +35,13 @@ router.get('/login', (req, res) =>{
 
 
 
+
 router.get('/logout', (req, res) => {
 	req.session.destroy((err) => {
 	  if(err){
 		res.send(err);
 	  } else {
-		res.redirect('/auth/login');
+		res.redirect('/');
 	  }
 	})
 })
