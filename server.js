@@ -6,8 +6,11 @@
   const session        = require('express-session');
   const morgan         = require('morgan');
   const jquery = require('jquery');
- ;
-  require('./db/db')
+ 
+  require('./db/db');
+  require('dotenv').config();
+
+  
 
 
   
@@ -36,7 +39,7 @@ app.use('/products', productsController);
 app.use('/users', usersController);
 app.use('/auth', authController); 
   
-  app.listen(3000, () => {
-    console.log('listening... on port: ', 3000);
-  });
+app.listen(process.env.PORT, () => {
+  console.log('listening on port 3000');
+})
   

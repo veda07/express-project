@@ -90,39 +90,22 @@ router.post('/', async (req, res) => {
 
 // Show Route
 router.get('/:id', async (req, res)=>{
-
-
-
     if (req.session.logged != true){
         res.redirect('/')
     }
-  
-
-
         try {
             const foundUser = await User.findById(req.session.usersDbId)
-           
-
             const foundProduct = await Products.findById(req.params.id).populate('owner');
-           
-       
-
             console.log(foundProduct)
-
             console.log('//////////////////////////////')
-            
             res.render('products/show.ejs', {
                 product: foundProduct,
                 user: foundUser
             });
-
         } catch (err){
         res.send(err)
         }
- 
-
 })
-
 
 
 // Delete Route

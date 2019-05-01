@@ -59,7 +59,7 @@
           <% for (let i = 0; i < user.purchasedProducts.length; i++) {%>
 
  <li>
-  <div class="card mb-3" style="max-width: 300px;">
+  <div class="card mb-3" style="max-width: 500px;">
    <div class="row no-gutters">
 
     <div class="col-md-4">
@@ -70,6 +70,7 @@
       <div class="card-body">
         <h5 class="card-title"><a href="/products/<%=user.purchasedProducts[i]._id%>"><%=user.purchasedProducts[i].title %></a>
         <p class="card-text"><%=user.purchasedProducts[i].description%><br><%=user.purchasedProducts[i].price%></p><br>
+        <a href="/products/<%=user.products[i]._id%>/edit" ><button class="edit-button">Edit</button></a>        
       </div>
     </div>
   </div>
